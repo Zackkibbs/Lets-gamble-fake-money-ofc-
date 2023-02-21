@@ -8,5 +8,36 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h3 id="=back">BACK</h3>
+      <h1 id="baccarat">BACCARAT</h1>
+      <h3 id="deck">DECK</h3>
+    </header>
+    <section id="game-container">
+      <div>
+        <h2 id="player">PLAYER</h2>
+        <div id="player-cards"></div>
+      </div>
+      <div>
+        <h2 id="banker">BANK</h2>
+        <div id="banker-cards"></div>
+      </div>
+    </section>
+    <section id="hit-container">
+      <div>
+        <div id="player-hit-card" class="rotate"></div>
+      </div>
+      <div>
+        <div id="banker-hit-card" class="rotate"></div>
+      </div>
+    </section>
+    <section id="betting-container">
+      <div class="betting">
+        <label for="bet">Place your bets</label>
+        <input type="number" id="bet" />
+      </div>
+      <button id="play">PLAY</button>
+    </section>
+  </body>
 </html>

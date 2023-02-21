@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    background-color: green;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem;
+}
+header{
+    color: #ffffff;
+}
+#game-container, #hit-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#player{
+    color: red;
+}
+#banker{
+    color: yellow;
+}
+#player, #banker{
+    display: flex;
+    justify-content: center;
+}
+#player-cards, #banker-cards, #player-hit-card, #banker-hit-card{
+    display: flex;
+    justify-content: center;
+}
+#player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{
+    height: 175px;
+    width: 125px;
+    margin: 10px;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
