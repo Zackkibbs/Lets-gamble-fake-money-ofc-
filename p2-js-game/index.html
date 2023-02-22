@@ -9,10 +9,9 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <button id="back-button">BACK</button>
     <header>
-      <h3 id="=back">BACK</h3>
       <h1 id="baccarat">BACCARAT</h1>
-      <h3 id="deck">DECK</h3>
     </header>
     <section id="game-container">
       <div>
@@ -24,7 +23,7 @@
         <div id="banker-cards"></div>
       </div>
     </section>
-    <section id="hit-container">
+    <section id="hit-container" class="hitting">
       <div>
         <div id="player-hit-card" class="rotate"></div>
       </div>
@@ -33,11 +32,13 @@
       </div>
     </section>
     <section id="betting-container">
-      <div class="betting">
-        <label for="bet">Place your bets</label>
-        <input type="number" id="bet" />
-      </div>
-      <button id="play">PLAY</button>
+      <form class="betting">
+        <label for="player-bet">Player bets</label>
+        <input type="number" id="player-bet" />
+        <button id="play-button">PLAY</button>
+        <label for="banker-bet">Banker bets</label>
+        <input type="number" id="banker-bet" />
+      </form>
     </section>
   </body>
 </html>

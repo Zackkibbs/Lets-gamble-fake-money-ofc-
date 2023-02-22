@@ -13,6 +13,7 @@ function buildDeck() {
     }
 }
 buildDeck();
+
 // shuffling deck (second)
 function shuffleDeck() {
     for (let i = 0; i < deck.length; i++) {
@@ -59,19 +60,21 @@ function startGame(){
         bankerSum = bankerScore[1];
     }
     // declareWinner();
-    console.log(playerFirstCard);
-    console.log(playerSecondCard);
+    // console.log(playerFirstCard);
+    // console.log(playerSecondCard);
     setTimeout(function(){
         canHit();
     }, 2000);
     
-    console.log(playerSum); 
-    console.log(bankerFirstCard);
-    console.log(bankerSecondCard);
-    
-    console.log(bankerSum); 
+    // console.log(playerSum); 
+    // console.log(bankerFirstCard);
+    // console.log(bankerSecondCard);
+    // console.log(bankerSum);
 }
-startGame();
+// startGame();
+
+let playButton = document.getElementById('play-button');
+playButton.addEventListener('click', startGame());
 
 // hitting card (6th)
 function playerHittingCard(){
@@ -87,7 +90,7 @@ function playerHittingCard(){
     }
     console.log(playerThirdCard);
     console.log(playerSum);
-    return playerThirdCard;
+    return getValue(playerThirdCard);
 }
 
 function bankerHittingCard(){
@@ -101,21 +104,22 @@ function bankerHittingCard(){
         let bankerScore = score.map(Number);
         bankerSum = bankerScore[1];
     }
-    console.log(bankerThirdCard);
-    console.log(bankerSum);
+    return getValue(bankerThirdCard);
+    // console.log(bankerThirdCard);
+    // console.log(bankerSum);
 }
 // function to declare the winner (5th)
 function declareWinner(){
     if (playerSum > bankerSum){
-        console.log('Player Wins');
+        console.log('Player Wins'); 
     }else if(bankerSum > playerSum){
         console.log('Banker Wins');
     }else{
         console.log('It\'s a tie');
     }
 }
-declareWinner();
 
+// declareWinner();
 // Hitting Rules (6th)
 // Player and Banker will stay (Declare winner)
 // 6-7-8-9
@@ -135,96 +139,125 @@ declareWinner();
 // - and bankers sum is 6
 // it will hit a card if player hit card is 6-7
 // let playerHit = playerHittingCard();
+// function canHit(){
+//     if (playerSum <= 5 && bankerSum <= 2){
+//         playerHittingCard();
+//         bankerHittingCard();
+//         declareWinner();
+//     }else if(playerSum <= 5 && bankerSum == 7){
+//         playerHittingCard();
+//         declareWinner();
+//     }else if (playerSum >= 8 || bankerSum >= 8){
+//         declareWinner();
+//     }else if (playerSum >= 6 && bankerSum >= 6){
+//         declareWinner();    
+//     }else if(playerSum == 6 && bankerSum <= 5){
+//         bankerHittingCard();
+//         declareWinner();
+//     }else if (playerSum == 7 && bankerSum <= 5){
+//         bankerHittingCard();
+//         declareWinner();
+//     }else if (playerSum <= 5 && bankerSum == 3){
+//         playerHittingCard();
+//         if(playerHittingCard() == 8){
+//             declareWinner();
+//         }else{
+//         bankerHittingCard();  
+//         declareWinner();      
+//         }
+//     }else if(playerSum <= 5 && bankerSum == 4){
+//         playerHittingCard();
+//         if(playerHittingCard() <= 1 && playerHittingCard() >= 8){
+//             declareWinner();
+//         }else{
+//         bankerHittingCard();
+//         declareWinner();
+//         }
+//     }else if(playerSum <= 5 && bankerSum == 5){
+//         playerHittingCard();
+//         if(playerHittingCard() <= 3 && playerHittingCard() >= 8){
+//             declareWinner();
+//         }else{
+//         bankerHittingCard();
+//         declareWinner();
+//         }
+//     }else if(playerSum <= 5 && bankerSum == 6){
+//         playerHittingCard();
+//         if(playerHittingCard() <= 5 && playerHittingCard() >= 8){
+//             declareWinner();
+//         }else{
+//         bankerHittingCard();
+//         declareWinner();
+//         }    
+//     }
+// }
+
+// switch case
 function canHit(){
-    if (playerSum <= 5 && bankerSum <= 2){
-        playerHittingCard();
-        bankerHittingCard();
-        declareWinner();
-    }else if(playerSum <= 5 && bankerSum == 7){
-        playerHittingCard();
-        declareWinner();
-    }else if (playerSum >= 8 || bankerSum >= 8){
-        declareWinner();
-    }else if (playerSum >= 6 && bankerSum >= 6){
-        declareWinner();    
-    }else if(playerSum == 6 && bankerSum <= 5){
-        bankerHittingCard();
-        declareWinner();
-    }else if (playerSum == 7 && bankerSum <= 5){
-        bankerHittingCard();
-        declareWinner();
-    }else if (playerSum <= 5 && bankerSum == 3){
-        playerHittingCard();
-        if(playerHittingCard() == 8){
+    switch (true){
+        case (playerSum <= 5 && bankerSum <= 2):
+            playerHittingCard();
+            bankerHittingCard();
             declareWinner();
-        }else{
-        bankerHittingCard();  
-        declareWinner();      
-        }
-    }else if(playerSum <= 5 && bankerSum == 4){
-        playerHittingCard();
-        if(playerHittingCard() <= 1 && playerHittingCard() >= 8){
+            break;
+        case(playerSum <= 5 && bankerSum == 7):
+            playerHittingCard();
             declareWinner();
-        }else{
-        bankerHittingCard();
-        declareWinner();
-        }
-    }else if(playerSum <= 5 && bankerSum == 5){
-        playerHittingCard();
-        if(playerHittingCard() <= 3 && playerHittingCard() >= 8){
+            break;
+        case(playerSum >= 8 || bankerSum >= 8):
             declareWinner();
-        }else{
-        bankerHittingCard();
-        declareWinner();
-        }
-    }else if(playerSum <= 5 && bankerSum == 6){
-        playerHittingCard();
-        if(playerHittingCard() <= 5 && playerHittingCard() >= 8){
+            break;
+        case(playerSum >= 6 && bankerSum >= 6):
             declareWinner();
-        }else{
-        bankerHittingCard();
-        declareWinner();
-        }    
+            break;    
+        case(playerSum == 6 && bankerSum <= 5):
+            bankerHittingCard();
+            declareWinner();
+            break;
+        case(playerSum == 7 && bankerSum <= 5):
+            bankerHittingCard();
+            declareWinner();
+            break;
+        case (playerSum <= 5 && bankerSum == 3):
+            let playerHitValue3 = playerHittingCard();
+            if(playerHitValue3 == 8){
+                declareWinner();
+            }else{
+            bankerHittingCard();  
+            declareWinner();      
+            }
+            break;
+        case (playerSum <= 5 && bankerSum == 4):
+            let playerHitValue = playerHittingCard();
+            if(playerHitValue <= 1 || playerHitValue >= 8){
+                declareWinner();
+            }else{
+            bankerHittingCard();
+            declareWinner();
+            }
+            break;
+        case (playerSum <= 5 && bankerSum == 5):
+            let playerHitValue1 = playerHittingCard();
+            if(playerHitValue1 <= 3 || playerHitValue1 >= 8){
+                declareWinner();
+            }else{
+            bankerHittingCard();
+            declareWinner();
+            }    
+            break;
+        case (playerSum <= 5 && bankerSum == 6):
+            let playerHitValue2 = playerHittingCard();
+            if(playerHitValue2 <= 5 || playerHitValue2 >= 8){
+                declareWinner();
+                console.log(playerHitValue2);
+            }else{
+            bankerHittingCard();
+            declareWinner();
+            }      
+            break;
+        default:
     }
 }
-// switch case
-// let playerHit = playerHittingCard();
-//     switch (playerHit){
-//         case (playerSum <= 5 && bankerSum == 3):
-//             if(playerHit == 8){
-//                 declareWinner();
-//             }else{
-//             bankerHittingCard();  
-//             declareWinner();      
-//             }
-//             break;
-//         case (playerSum <= 5 && bankerSum == 4):
-//             if(playerHit <= 1 && playerHit >= 8){
-//                 declareWinner();
-//             }else{
-//             bankerHittingCard();
-//             declareWinner();
-//             }
-//             break;
-//         case (playerSum <= 5 && bankerSum == 5):
-//             if(playerHit <= 3 && playerHit >= 8){
-//                 declareWinner();
-//             }else{
-//             bankerHittingCard();
-//             declareWinner();
-//             }    
-//             break;
-//         case (playerSum <= 5 && bankerSum == 6):
-//             if(playerHit <= 5 && playerHit >= 8){
-//                 declareWinner();
-//             }else{
-//             bankerHittingCard();
-//             declareWinner();
-//             }      
-//             break;
-//         default:
-//     }
-
 // to get the value of player and banker (4th)
 // let card = deck.pop();
 function getValue(card){
