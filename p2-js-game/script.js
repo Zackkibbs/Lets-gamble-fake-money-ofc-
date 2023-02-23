@@ -4,6 +4,8 @@ const playerCardsContainer = document.getElementById('player-cards');
 const bankerCardsContainer = document.getElementById('banker-cards');
 const playerHitCard = document.getElementById('player-hit-card');
 const bankerHitCard = document.getElementById('banker-hit-card');
+const backButton = document.getElementById('back-button');
+const body = document.querySelector('body');
 // building deck (8 decks) (first)
 let deck = [];
 function buildDeck() {
@@ -44,20 +46,28 @@ function resetField(){
     bankerCardsContainer.innerHTML = '';
     playerHitCard.innerHTML = '';
     bankerHitCard.innerHTML = '';
+    playerCardsContainer.style.visibility = 'visible'
+    bankerCardsContainer.style.visibility = 'visible'
+    bankerHitCard.style.visibility = 'visible';
+    playerHitCard.style.visibility = 'visible';
     playerSum = 0;
     bankerSum = 0;
+    let audio = new Audio('sounds/shuffle-cards.mp3');
+    playButton.addEventListener('click', audio.play());
+    closePopup();
 }
-playerSum = 0;
-bankerSum = 0;
+let playerFirstCardImg = document.createElement('img');
+let playerSecondCardImg = document.createElement('img');
+let bankerFirstCardImg = document.createElement('img');
+let bankerSecondCardImg = document.createElement('img');
+
 function startGame(){
     resetField();
+    document.getElementById("play-button").disabled = true;
+    backButton.disabled = true;
     let playerFirstCard = deck.pop();
     let playerSecondCard = deck.pop();
-    playerSum += getValue(playerFirstCard) + getValue(playerSecondCard);
-    let playerFirstCardImg = document.createElement('img');
-    let playerSecondCardImg = document.createElement('img');
-    // playerFirstCardImg.classList.add('hidden');
-    // playerSecondCardImg.classList.add('hidden');
+    playerSum += getValue(playerFirstCard) + getValue(playerSecondCard);  
     playerFirstCardImg.src = 'images/' + playerFirstCard + '.png';
     playerSecondCardImg.src = 'images/' + playerSecondCard + '.png';
     document.getElementById('player-cards').appendChild(playerFirstCardImg);
@@ -70,10 +80,6 @@ function startGame(){
     let bankerFirstCard = deck.pop();
     let bankerSecondCard = deck.pop();
     bankerSum += getValue(bankerFirstCard) + getValue(bankerSecondCard);
-    let bankerFirstCardImg = document.createElement('img');
-    let bankerSecondCardImg = document.createElement('img');
-    // bankerFirstCardImg.classList.add('hidden');
-    // bankerSecondCardImg.classList.add('hidden');
     bankerFirstCardImg.src = 'images/' + bankerFirstCard + '.png';
     bankerSecondCardImg.src = 'images/' + bankerSecondCard + '.png';
     document.getElementById('banker-cards').appendChild(bankerFirstCardImg);
@@ -83,28 +89,17 @@ function startGame(){
         let bankerScore = score.map(Number);
         bankerSum = bankerScore[1];
     }
-    // declareWinner();
-    // console.log(playerFirstCard);
-    // console.log(playerSecondCard);
     setTimeout(function(){
         canHit();
     }, 2000);
-    
-    // console.log(playerSum); 
-    // console.log(bankerFirstCard);
-    // console.log(bankerSecondCard);
-    // console.log(bankerSum);
 }
 // startGame();
-// let audio = new Audio('sounds/shuffle-cards.mp3');
-// playButton.addEventListener('click', audio.play());
 
 // hitting card (6th)
 function playerHittingCard(){
     let playerThirdCard = deck.pop();
     playerSum += getValue(playerThirdCard);
     let playerThirdCardImg = document.createElement('img');
-    // playerThirdCardImg.classList.add('hidden');
     playerThirdCardImg.src = 'images/' + playerThirdCard + '.png';
     document.getElementById('player-hit-card').appendChild(playerThirdCardImg);
     if(playerSum > 9){
@@ -119,7 +114,6 @@ function bankerHittingCard(){
     let bankerThirdCard = deck.pop();
     bankerSum += getValue(bankerThirdCard);
     let bankerThirdCardImg = document.createElement('img');
-    // bankerThirdCardImg.classList.add('hidden');
     bankerThirdCardImg.src = 'images/' + bankerThirdCard + '.png';
     document.getElementById('banker-hit-card').appendChild(bankerThirdCardImg);
     if(bankerSum > 9){
@@ -128,20 +122,31 @@ function bankerHittingCard(){
         bankerSum = bankerScore[1];
     }
     return getValue(bankerThirdCard);
-    // console.log(bankerThirdCard);
-    // console.log(bankerSum);
 }
 // function to declare the winner (5th)
 function declareWinner(){
+    let result = document.getElementById('winner')
+    let scores = document.getElementById('scores')
+    document.getElementById("play-button").disabled = true;
     if (playerSum > bankerSum){
+        result.innerHTML = `Player Wins`;
+        scores.innerHTML = `Player wins ${playerSum} to ${bankerSum}`;       
+        openPopup();
         console.log('Player Wins'); 
     }else if(bankerSum > playerSum){
+        result.innerHTML = `Bank Wins`;
+        scores.innerHTML = `Bank wins ${bankerSum} to ${playerSum}`;
+        openPopup()
         console.log('Banker Wins');
     }else{
+        scores.innerHTML = `Player and Banker is ${playerSum}`
+        result.innerHTML = `Draw`
+        openPopup()
         console.log('It\'s a tie');
     }
 }
 
+    
 // declareWinner();
 // Hitting Rules (6th)
 // Player and Banker will stay (Declare winner)
@@ -161,59 +166,6 @@ function declareWinner(){
 // it wil hit a card if player hit card is 4-5-6-7
 // - and bankers sum is 6
 // it will hit a card if player hit card is 6-7
-// let playerHit = playerHittingCard();
-// function canHit(){
-//     if (playerSum <= 5 && bankerSum <= 2){
-//         playerHittingCard();
-//         bankerHittingCard();
-//         declareWinner();
-//     }else if(playerSum <= 5 && bankerSum == 7){
-//         playerHittingCard();
-//         declareWinner();
-//     }else if (playerSum >= 8 || bankerSum >= 8){
-//         declareWinner();
-//     }else if (playerSum >= 6 && bankerSum >= 6){
-//         declareWinner();    
-//     }else if(playerSum == 6 && bankerSum <= 5){
-//         bankerHittingCard();
-//         declareWinner();
-//     }else if (playerSum == 7 && bankerSum <= 5){
-//         bankerHittingCard();
-//         declareWinner();
-//     }else if (playerSum <= 5 && bankerSum == 3){
-//         playerHittingCard();
-//         if(playerHittingCard() == 8){
-//             declareWinner();
-//         }else{
-//         bankerHittingCard();  
-//         declareWinner();      
-//         }
-//     }else if(playerSum <= 5 && bankerSum == 4){
-//         playerHittingCard();
-//         if(playerHittingCard() <= 1 && playerHittingCard() >= 8){
-//             declareWinner();
-//         }else{
-//         bankerHittingCard();
-//         declareWinner();
-//         }
-//     }else if(playerSum <= 5 && bankerSum == 5){
-//         playerHittingCard();
-//         if(playerHittingCard() <= 3 && playerHittingCard() >= 8){
-//             declareWinner();
-//         }else{
-//         bankerHittingCard();
-//         declareWinner();
-//         }
-//     }else if(playerSum <= 5 && bankerSum == 6){
-//         playerHittingCard();
-//         if(playerHittingCard() <= 5 && playerHittingCard() >= 8){
-//             declareWinner();
-//         }else{
-//         bankerHittingCard();
-//         declareWinner();
-//         }    
-//     }
-// }
 
 // switch case
 function canHit(){
@@ -281,7 +233,6 @@ function canHit(){
     }
 }
 // to get the value of player and banker (4th)
-// let card = deck.pop();
 function getValue(card){
     let data = card.split('-');
     let value = data[0];
@@ -293,3 +244,36 @@ function getValue(card){
     }
     return parseInt(value);
 }
+// popup winner
+let openPopUp = document.getElementById('pop-up')
+let closePopUp = document.getElementById('pop-up-btn')
+function openPopup(){
+    openPopUp.classList.add('open-popup');
+}
+function closePopup(){
+    closePopUp.addEventListener('click', function(){
+        openPopUp.classList.remove('open-popup');
+        document.getElementById("play-button").disabled = false;
+        backButton.disabled = false;
+        playerFirstCardImg.src = 'images/BACK.png';
+        playerSecondCardImg.src = 'images/BACK.png';
+        bankerFirstCardImg.src = 'images/BACK.png';
+        bankerSecondCardImg.src = 'images/BACK.png';
+        playerHitCard.style.visibility = 'hidden';
+        bankerHitCard.style.visibility = 'hidden';        
+    });
+}
+
+//  back button
+backButton.addEventListener('click', function(e){
+    e.preventDefault();
+    hideAll();
+});
+
+function hideAll(){
+    body.style.visibility = 'hidden';
+    playerFirstCardImg.style.visibility = 'hidden';
+    playerSecondCardImg.style.visibility = 'hidden';
+    bankerFirstCardImg.style.visibility = 'hidden';
+    bankerSecondCardImg.style.visibility = 'hidden';
+}    

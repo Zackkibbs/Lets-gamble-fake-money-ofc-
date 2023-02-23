@@ -48,14 +48,37 @@
     <section id="betting-container">
       <form class="betting">
         <label for="player-bet">Player bets</label>
-        <input type="number" id="player-bet" placeholder="0" value="0" />
+        <input
+          type="number"
+          id="player-bet"
+          class="input"
+          placeholder="0"
+          value="0"
+        />
         <button id="play-button">PLAY</button>
         <label for="banker-bet">Banker bets</label>
-        <input type="number" id="banker-bet" placeholder="0" value="0" />
+        <input
+          type="number"
+          id="banker-bet"
+          class="input"
+          placeholder="0"
+          value="0"
+        />
       </form>
       <div id="credits">
         <h2>Credits</h2>
       </div>
+    </section>
+    <section id="pop-up-container">
+      <div id="pop-up" class="pop-up">
+        <h2 id="winner"></h2>
+        <p id="scores"></p>
+        <button id="pop-up-btn" type="button">OK</button>
+      </div>
+    </section>
+    <section id="landing-section">
+      <button id="start-game">START GAME</button>
+      <button id="how-to-play">HOW TO PLAY</button>
     </section>
   </body>
 </html>

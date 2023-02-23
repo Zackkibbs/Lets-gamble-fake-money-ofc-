@@ -71,7 +71,7 @@ header{
 #credits{
     color: #ffffff;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 .rotate {
     transform: rotate(90deg);
@@ -83,6 +83,42 @@ form {
     margin-top: 5rem;
 }
 .hidden{
+    visibility: hidden;
     display: none;
 }
 
+.pop-up{
+    width: 25rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 0 2rem 2rem;
+    visibility: hidden;
+    transition: transform 0.7s, 0.7s;
+}
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+.pop-up h2{
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin:  2rem 0 1rem;
+}
+#pop-up button{
+    width: 100%;
+    margin-top: 3rem;
+    padding: 0.625rem 0;
+    background: #6fd649;
+    border: 0;
+    outline: none;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
