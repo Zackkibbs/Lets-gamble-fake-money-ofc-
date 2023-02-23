@@ -26,9 +26,13 @@ function shuffleDeck() {
 }
 shuffleDeck()
 
+
 // start game (third)
 let playerSum = 0;
 let bankerSum = 0;
+let playButton = document.getElementById('play-button');
+
+playButton.addEventListener('click', startGame());
 
 function startGame(){
     let playerFirstCard = deck.pop();
@@ -36,6 +40,8 @@ function startGame(){
     playerSum += getValue(playerFirstCard) + getValue(playerSecondCard);
     let playerFirstCardImg = document.createElement('img');
     let playerSecondCardImg = document.createElement('img');
+    // playerFirstCardImg.classList.add('hidden');
+    // playerSecondCardImg.classList.add('hidden');
     playerFirstCardImg.src = 'images/' + playerFirstCard + '.png';
     playerSecondCardImg.src = 'images/' + playerSecondCard + '.png';
     document.getElementById('player-cards').appendChild(playerFirstCardImg);
@@ -50,6 +56,8 @@ function startGame(){
     bankerSum += getValue(bankerFirstCard) + getValue(bankerSecondCard);
     let bankerFirstCardImg = document.createElement('img');
     let bankerSecondCardImg = document.createElement('img');
+    // bankerFirstCardImg.classList.add('hidden');
+    // bankerSecondCardImg.classList.add('hidden');
     bankerFirstCardImg.src = 'images/' + bankerFirstCard + '.png';
     bankerSecondCardImg.src = 'images/' + bankerSecondCard + '.png';
     document.getElementById('banker-cards').appendChild(bankerFirstCardImg);
@@ -72,15 +80,15 @@ function startGame(){
     // console.log(bankerSum);
 }
 // startGame();
-
-let playButton = document.getElementById('play-button');
-playButton.addEventListener('click', startGame());
+// let audio = new Audio('sounds/shuffle-cards.mp3');
+// playButton.addEventListener('click', audio.play());
 
 // hitting card (6th)
 function playerHittingCard(){
     let playerThirdCard = deck.pop();
     playerSum += getValue(playerThirdCard);
     let playerThirdCardImg = document.createElement('img');
+    // playerThirdCardImg.classList.add('hidden');
     playerThirdCardImg.src = 'images/' + playerThirdCard + '.png';
     document.getElementById('player-hit-card').appendChild(playerThirdCardImg);
     if(playerSum > 9){
@@ -88,8 +96,6 @@ function playerHittingCard(){
         let playerScore = score.map(Number);
         playerSum = playerScore[1];
     }
-    console.log(playerThirdCard);
-    console.log(playerSum);
     return getValue(playerThirdCard);
 }
 
@@ -97,6 +103,7 @@ function bankerHittingCard(){
     let bankerThirdCard = deck.pop();
     bankerSum += getValue(bankerThirdCard);
     let bankerThirdCardImg = document.createElement('img');
+    // bankerThirdCardImg.classList.add('hidden');
     bankerThirdCardImg.src = 'images/' + bankerThirdCard + '.png';
     document.getElementById('banker-hit-card').appendChild(bankerThirdCardImg);
     if(bankerSum > 9){
@@ -249,7 +256,6 @@ function canHit(){
             let playerHitValue2 = playerHittingCard();
             if(playerHitValue2 <= 5 || playerHitValue2 >= 8){
                 declareWinner();
-                console.log(playerHitValue2);
             }else{
             bankerHittingCard();
             declareWinner();

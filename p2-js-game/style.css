@@ -2,9 +2,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Hind Madurai', sans-serif;
 }
 html{
-    background-color: green;
+    background-color: rgb(3, 100, 3);
 }
 header{
     display: flex;
@@ -12,9 +13,15 @@ header{
     margin: 4rem;
     color: #ffffff;
 }
-#game-container, #hit-container{
-    display: grid;
-    grid-template-columns: 50% 50%;
+#game-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#game-container .starting-cards, #game-container .hit-card{
+    width: 49%;
+    height: 200px;
 }
 #player{
     color: red;
@@ -36,18 +43,35 @@ header{
     margin: 10px;
 }
 #back-button{
-    height: 3.125;
-    width: 6.25rem;
-    font-size: 1.25;
     position: absolute;
+    margin-left: 1rem;
 }
-#play-button{
-    height: 3.125;
-    width: 6.25rem;
-    font-size: 1.25;
+#play-button, #back-button{
+    font-size: 1.25rem;
+    box-shadow: 0 0.9rem 2.8rem rgba(241, 59, 68, 0.493);
+    width: 10em;
+    height: 5ex;
+    background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+#play-button:hover, #back-button:hover {
+    color: #03C988;
+    text-shadow: 8px 8px 11px #03C988;
+}
+#play-button:active, #back-button:active {
+    box-shadow: 2px 2px 5px #fc894d;
 }
 #betting-container{
     height: 30%;
+}
+#credits{
+    color: #ffffff;
+    text-align: center;
+    margin-top: 1rem;
 }
 .rotate {
     transform: rotate(90deg);
@@ -61,3 +85,4 @@ form {
 .hidden{
     display: none;
 }
+
