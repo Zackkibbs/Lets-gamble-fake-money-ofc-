@@ -145,9 +145,8 @@ function declareWinner(){
         console.log('It\'s a tie');
     }
 }
-
-    
 // declareWinner();
+
 // Hitting Rules (6th)
 // Player and Banker will stay (Declare winner)
 // 6-7-8-9
@@ -277,3 +276,12 @@ function hideAll(){
     bankerFirstCardImg.style.visibility = 'hidden';
     bankerSecondCardImg.style.visibility = 'hidden';
 }    
+
+// function toggleHide() {
+//     let toggle = document.getElementById("landing-section");
+//     toggle.classList.toggle("active");
+// }
+// toggleHide();
+// const startGameButton = document.getElementById('start-game');
+// startGame.addEventListener('click', )
+
