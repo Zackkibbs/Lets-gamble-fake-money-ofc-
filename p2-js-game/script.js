@@ -1,6 +1,9 @@
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "TEN", "J", "Q", "K"];
 const types = ["C", "D", "H", "S"];
-
+const playerCardsContainer = document.getElementById('player-cards');
+const bankerCardsContainer = document.getElementById('banker-cards');
+const playerHitCard = document.getElementById('player-hit-card');
+const bankerHitCard = document.getElementById('banker-hit-card');
 // building deck (8 decks) (first)
 let deck = [];
 function buildDeck() {
@@ -32,9 +35,22 @@ let playerSum = 0;
 let bankerSum = 0;
 let playButton = document.getElementById('play-button');
 
-playButton.addEventListener('click', startGame());
-
+playButton.addEventListener('click', function (e){
+    e.preventDefault();
+    startGame();
+});
+function resetField(){
+    playerCardsContainer.innerHTML = '';
+    bankerCardsContainer.innerHTML = '';
+    playerHitCard.innerHTML = '';
+    bankerHitCard.innerHTML = '';
+    playerSum = 0;
+    bankerSum = 0;
+}
+playerSum = 0;
+bankerSum = 0;
 function startGame(){
+    resetField();
     let playerFirstCard = deck.pop();
     let playerSecondCard = deck.pop();
     playerSum += getValue(playerFirstCard) + getValue(playerSecondCard);
