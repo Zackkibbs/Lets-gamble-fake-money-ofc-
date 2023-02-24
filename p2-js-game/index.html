@@ -16,11 +16,11 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <button id="back-button">BACK</button>
-    <header>
+    <button id="back-button" class="hidden">BACK</button>
+    <header id="header" class="hidden">
       <h1 id="baccarat">BACCARAT</h1>
     </header>
-    <section id="game-container">
+    <section id="game-container" class="hidden">
       <div class="starting-cards">
         <h2 id="player">PLAYER</h2>
         <div id="player-cards">
@@ -45,7 +45,7 @@
     <!-- <section id="hit-container" class="hitting">
      
     </section> -->
-    <section id="betting-container">
+    <section id="betting-container" class="hidden">
       <form class="betting">
         <label for="player-bet">Player bets</label>
         <input
@@ -55,7 +55,14 @@
           placeholder="0"
           value="0"
         />
-        <button id="play-button">PLAY</button>
+        <label for="tie-bet">Tie bets</label>
+        <input
+          type="number"
+          id="tie-bet"
+          class="input"
+          placeholder="0"
+          value="0"
+        />
         <label for="banker-bet">Banker bets</label>
         <input
           type="number"
@@ -65,6 +72,7 @@
           value="0"
         />
       </form>
+      <button id="play-button">PLAY</button>
       <div id="credits">
         <h2>Credits</h2>
       </div>
@@ -76,7 +84,7 @@
         <button id="pop-up-btn" type="button">OK</button>
       </div>
     </section>
-    <section id="landing-section">
+    <section id="landing-section" class="active">
       <button id="start-game">START GAME</button>
       <button id="how-to-play">HOW TO PLAY</button>
     </section>

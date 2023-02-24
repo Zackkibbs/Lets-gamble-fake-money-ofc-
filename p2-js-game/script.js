@@ -263,25 +263,44 @@ function closePopup(){
     });
 }
 
-//  back button
-backButton.addEventListener('click', function(e){
-    e.preventDefault();
-    hideAll();
+const landing = document.getElementById('landing-section');
+let contains = landing.classList.contains('active');
+let back = document.getElementById('back-button');
+let header = document.getElementById('header');
+let gameContainer = document.getElementById('game-container');
+let bettingContainer = document.getElementById('betting-container');
+const startGameButton = document.getElementById('start-game');
+    startGameButton.addEventListener('click', function(){
+        showGame();
 });
-
-function hideAll(){
-    body.style.visibility = 'hidden';
+function showGame(){
+    landing.classList.remove('active');
+    landing.classList.add('hidden');
+    back.classList.remove('hidden');
+    header.classList.remove('hidden');
+    gameContainer.classList.remove('hidden');
+    gameContainer.classList.add('active');
+    bettingContainer.classList.remove('hidden');
+    playerFirstCardImg.style.visibility = 'visible';
+    playerSecondCardImg.style.visibility = 'visible';
+    bankerFirstCardImg.style.visibility = 'visible';
+    bankerSecondCardImg.style.visibility = 'visible';
+}
+//  back button
+function hideGame(){
     playerFirstCardImg.style.visibility = 'hidden';
     playerSecondCardImg.style.visibility = 'hidden';
     bankerFirstCardImg.style.visibility = 'hidden';
     bankerSecondCardImg.style.visibility = 'hidden';
-}    
-
-// function toggleHide() {
-//     let toggle = document.getElementById("landing-section");
-//     toggle.classList.toggle("active");
-// }
-// toggleHide();
-// const startGameButton = document.getElementById('start-game');
-// startGame.addEventListener('click', )
-
+    landing.classList.add('active');
+    landing.classList.remove('hidden');
+    back.classList.add('hidden');
+    header.classList.add('hidden');
+    gameContainer.classList.add('hidden');
+    gameContainer.classList.remove('active');
+    bettingContainer.classList.add('hidden');
+}
+backButton.addEventListener('click', function(e){
+    e.preventDefault();
+    hideGame()
+});

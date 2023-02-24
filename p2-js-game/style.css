@@ -5,7 +5,7 @@
     font-family: 'Hind Madurai', sans-serif;
 }
 html{
-    background-color: rgb(3, 100, 3);
+    background-color: rgb(4, 87, 4);
 }
 header{
     display: flex;
@@ -76,6 +76,11 @@ header{
     text-align: center;
     margin-top: 2rem;
 }
+#play-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .rotate {
     transform: rotate(90deg);
 }
@@ -83,7 +88,7 @@ form {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 .hidden{
     visibility: hidden;
@@ -126,6 +131,11 @@ form {
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 #landing-section{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
     height: 100vh;
