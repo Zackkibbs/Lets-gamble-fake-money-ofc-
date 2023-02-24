@@ -86,7 +86,78 @@
     </section>
     <section id="landing-section" class="active">
       <button id="start-game">START GAME</button>
-      <button id="how-to-play">HOW TO PLAY</button>
+      <button id="rules">RULES OF THE GAME</button>
+    </section>
+    <section id="rules-container" class="hidden">
+      <p id="game-rules">
+        The object of the game is to get a score of 9 or closest to it. Players
+        may play with the Bank, or against it (as Player), and/or place Tie bets
+        at anytime. Ace counts as 1 while picture cards and tens as zero. Cards
+        from 2 to 9 follow their face value. Each hand's final score is
+        evaluated as the sum of the cards' point values less all multiples of
+        ten. The hand that scores closer to 9 wins. Below is the hitting rules.
+      </p>
+      <table id="table">
+        <caption>
+          Player Hand
+        </caption>
+        <tr>
+          <th>Point Value of First Two Cards:</th>
+          <th>Draws a card:</th>
+        </tr>
+        <tr>
+          <td>0-1-2-3-4-5</td>
+          <td>Draw a card</td>
+        </tr>
+        <tr>
+          <td>6-7</td>
+          <td>Stand</td>
+        </tr>
+        <tr>
+          <td>8-9</td>
+          <td>Stand</td>
+        </tr>
+      </table>
+      <table>
+        <caption>
+          Banker Hand
+        </caption>
+        <tr>
+          <th>Point Value of First Two Cards:</th>
+          <th>Draws when the player's third card is:</th>
+          <th>Does not draw when the player's third card is:</th>
+        </tr>
+        <tr>
+          <td>0-1-2</td>
+          <td>Always draws a card</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>A-2-3-4-5-6-7-9-10-J-Q-K</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>2-3-4-5-6-7</td>
+          <td>A-8-9-10-J-Q-K</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>4-5-6-7</td>
+          <td>A-2-3-8-9-10-J-Q-K</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>6-7</td>
+          <td>A-2-3-4-5-8-9-10-J-Q-K</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Always Stands</td>
+          <td></td>
+        </tr>
+      </table>
     </section>
   </body>
 </html>

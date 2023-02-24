@@ -262,7 +262,7 @@ function closePopup(){
         bankerHitCard.style.visibility = 'hidden';        
     });
 }
-
+// game start button
 const landing = document.getElementById('landing-section');
 let contains = landing.classList.contains('active');
 let back = document.getElementById('back-button');
@@ -299,8 +299,23 @@ function hideGame(){
     gameContainer.classList.add('hidden');
     gameContainer.classList.remove('active');
     bettingContainer.classList.add('hidden');
+    rulesContainer.classList.add('hidden');
 }
 backButton.addEventListener('click', function(e){
     e.preventDefault();
     hideGame()
 });
+// rules
+let rules = document.getElementById('rules');
+let rulesContainer = document.getElementById('rules-container');
+function rulesOfTheGame(){
+    landing.classList.remove('active');
+    landing.classList.add('hidden');
+    rulesContainer.classList.remove('hidden');
+    rules.classList.remove('hidden');
+    back.classList.remove('hidden');
+}
+rules.addEventListener('click', function(){
+    rulesOfTheGame();
+    back.style.marginTop = "2rem"
+})
