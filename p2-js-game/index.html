@@ -19,6 +19,7 @@
     <button id="back-button" class="hidden">BACK</button>
     <header id="header" class="hidden">
       <h1 id="baccarat">BACCARAT</h1>
+      <h2 id="super6">SUPER SIX</h2>
     </header>
     <section id="game-container" class="hidden">
       <div class="starting-cards">
@@ -54,6 +55,11 @@
         <button id="cancel-tie-bet">Cancel bet</button>
       </form>
       <form>
+        <input type="number" id="super-bet" class="input" value="0" />
+        <button id="super-betting-btn">Super Six</button>
+        <button id="cancel-super-bet">Cancel bet</button>
+      </form>
+      <form>
         <input type="number" id="banker-bet" class="input" value="0" />
         <button id="banker-betting-btn">Banker</button>
         <button id="cancel-banker-bet">Cancel bet</button>
@@ -84,7 +90,9 @@
         at anytime. Ace counts as 1 while picture cards and tens as zero. Cards
         from 2 to 9 follow their face value. Each hand's final score is
         evaluated as the sum of the cards' point values less all multiples of
-        ten. The hand that scores closer to 9 wins. Below is the hitting rules.
+        ten. The hand that scores closer to 9 wins. Bank bets are paid half on
+        score of 6. Super six bets are paid 12:1. Tie bets are paid 8:1. Below
+        is the hitting rules.
       </p>
       <table id="table">
         <caption>

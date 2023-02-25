@@ -9,11 +9,11 @@ html{
 }
 header{
     display: flex;
-    justify-content: center;
-    margin: 4rem;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 4rem 4rem 4rem 24rem;
     color: #ffffff;
 }
-
 #game-container{
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@ header{
 #player{
     color: red;
 }
-#banker{
+#banker, header h2{
     color: yellow;
 }
 #player, #banker{
@@ -66,7 +66,12 @@ header{
     text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493);
     border: 2px solid #f3a42c;
 }
-#play-button:active, #back-button:active {
+form button:hover{
+    color: #CC3636;
+    text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493);
+    border: 1px solid #f3a42c;
+}
+#play-button:active, #back-button:active, form button:active {
     box-shadow: 2px 2px 5px #fc894d;
 }
 #betting-container{
