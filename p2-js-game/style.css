@@ -84,7 +84,7 @@ form button:hover{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem 0 0 1rem;
 }
 #credits, #announce{
     color:#FFE9A0;
@@ -223,7 +223,6 @@ footer{
     text-align: center;
 }
 /* media queries */
-
 /* Medium devices */
 @media only screen and (max-width: 768px){
     #back-button, #play-button{
@@ -240,7 +239,7 @@ footer{
         font-size: 1.5rem;
     }
     #announce, #credits{
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         height: 2rem;
         margin-top: 1rem;
     }
@@ -269,13 +268,12 @@ footer{
         font-size: xx-small;
     }    
     #landing-section button{
-        width: 40%;
         font-size: 1.5rem;
         padding: 8px;
         margin: 2rem;
     }
     #rules-container{
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin: 1rem;
     }
     .pop-up{
@@ -291,5 +289,72 @@ footer{
         margin-top: 2rem;
         padding: 0.5rem 0;
         font-size: 1rem;
+    }
+}
+/* Small devices */
+@media only screen and (max-width: 635px){
+    #betting-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media only screen and (max-width: 518px){
+    #back-button, #play-button{
+        font-size: 0.8rem;
+        width: 8.5em;
+        height: 4ex;
+        padding: 2px;
+    }
+    #super6{
+        top: 4%;
+        font-size: medium;
+    }
+    #baccarat, #game-container h2{
+        font-size: 1rem;
+    }
+    #announce, #credits{
+        height: 1.5rem;
+        margin-top: 0.7rem;
+    }
+    #game-container .starting-cards, #game-container .hit-card{
+        height: 8.5rem;
+    }
+    #player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{
+        height: 110px;
+        width: 70px;
+        margin: 6px;
+    }   
+    #landing-section button{
+        width: 50%;
+        font-size: 1rem;
+        padding: 6px;
+        margin: 1rem;
+    }
+    #rules-container{
+        font-size: 1.1rem;
+        margin: 1rem;
+    }
+    .pop-up{
+        width: 15rem;
+        padding: 0 0.7rem 0.7rem;
+    }
+    .pop-up h2{
+        font-size: 1.5rem;
+        margin:  1rem 0 0.6rem;
+        color: #CC3636;
+    }
+    #pop-up button{
+        margin-top: 1rem;
+        padding: 0.3rem 0;
+        font-size: 0.8rem;
+    }
+    .pop-up p{
+        font-size: 0.8rem;
+    }
+    #rules-container{
+        font-size: 0.7rem;
+        margin: 0.9rem;
     }
 }
