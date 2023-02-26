@@ -91,6 +91,11 @@ function resetField(){
     bankerSum = 0;
     let audio = new Audio('sounds/shuffle-cards.mp3');
     playButton.addEventListener('click', audio.play());
+    setTimeout(function(){
+        let audio2 = new Audio('sounds/deal.mp3');
+        playButton.addEventListener('click', audio2.play());
+    }, 300);
+    
     closePopup();
 }
 let playerFirstCardImg = document.createElement('img');
@@ -189,9 +194,15 @@ function declareWinner(){
         if (playerBet.value != 0){
             setTimeout(function(){
             announce.innerHTML = `You won ${playerBet.value}`;
-            }, 2000);
+            let audio = new Audio('sounds/win.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }else{
+            setTimeout(function(){
             announce.innerHTML = `You lost`;
+            let audio = new Audio('sounds/lose.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }
         console.log('Player Wins'); 
     }else if(bankerSum > playerSum){
@@ -204,13 +215,17 @@ function declareWinner(){
             let amount = bankerBet.value * 1;
             let half = amount / 2;
             let superAmount = superBet.value * 13;
+            console.log(half);
+            console.log(amount);
+            console.log(superAmount);
             setTimeout(function(){
                 creditBalance.innerHTML = credits += (amount + half + superAmount);
+                announce.innerHTML = `You won ${(half + superAmount) - superBet.value}`;
             }, 2000);
             setTimeout(function(){
-            announce.innerHTML = `You won ${half}`;
-            }, 2000);
-            return;
+            let audio = new Audio('sounds/tie.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }else{
             result.innerHTML = `Bank Wins`;
             scores.innerHTML = `Banker wins ${bankerSum} to ${playerSum}`;
@@ -226,9 +241,15 @@ function declareWinner(){
         if(bankerBet.value != 0){
             setTimeout(function(){
             announce.innerHTML = `You won ${bankerBet.value}`;
-            }, 2000);
+            let audio = new Audio('sounds/win.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }else{
+            setTimeout(function(){
             announce.innerHTML = `You lost`;
+            let audio = new Audio('sounds/lose.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         } 
         console.log('Banker Wins');
     }else{
@@ -248,10 +269,15 @@ function declareWinner(){
         if(tieBet.value != 0){
             setTimeout(function(){
             announce.innerHTML = `You won ${tieBet.value * 8}`;
-            }, 2000);
+            let audio = new Audio('sounds/tie.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }else{
+            setTimeout(function(){
             announce.innerHTML = `It\'s a tie`;
-
+            let audio = new Audio('sounds/lose.wav');
+            announce.addEventListener('click', audio.play());
+            }, 1000);
         }
         console.log('It\'s a tie');
     }
@@ -421,6 +447,8 @@ function showGame(){
     document.getElementById('cancel-banker-bet').disabled = true;
     document.getElementById('cancel-tie-bet').disabled = true;
     footer.classList.remove('hidden');
+    let audio = new Audio('sounds/startgame.wav');
+    startGameButton.addEventListener('click', audio.play());
 }
 //  back button
 function hideGame(){
@@ -442,7 +470,9 @@ function hideGame(){
 }
 backButton.addEventListener('click', function(e){
     e.preventDefault();
-    hideGame()
+    hideGame();
+    let audio = new Audio('sounds/back.wav');
+    backButton.addEventListener('click', audio.play());
 });
 // rules
 let rules = document.getElementById('rules');
@@ -457,6 +487,8 @@ function rulesOfTheGame(){
 }
 rules.addEventListener('click', function(){
     rulesOfTheGame();
+    let audio = new Audio('sounds/rules.wav');
+    rules.addEventListener('click', audio.play());
 });
 
 // betting button
@@ -492,6 +524,8 @@ function betting(){
             playerBetBtn.disabled = true;
             document.getElementById("cancel-player-bet").disabled = false;
             document.getElementById("play-button").disabled = false;
+            let audio = new Audio('sounds/bet.wav');
+            playerBetBtn.addEventListener('click', audio.play());
             }
         } 
     );
@@ -525,6 +559,8 @@ function betting(){
             bankerBetBtn.disabled = true;
             document.getElementById('cancel-banker-bet').disabled = false;
             document.getElementById("play-button").disabled = false;   
+            let audio = new Audio('sounds/bet.wav');
+            playerBetBtn.addEventListener('click', audio.play());
             }
         }
     );
@@ -554,6 +590,8 @@ function betting(){
             tieBetBtn.disabled = true;
             document.getElementById('cancel-tie-bet').disabled = false;
             document.getElementById("play-button").disabled = false;
+            let audio = new Audio('sounds/bet.wav');
+            playerBetBtn.addEventListener('click', audio.play());
             }
     });
     superBetBtn.addEventListener('click', function(e){
@@ -582,6 +620,8 @@ function betting(){
             superBetBtn.disabled = true;
             document.getElementById('cancel-super-bet').disabled = false;
             document.getElementById("play-button").disabled = false;   
+            let audio = new Audio('sounds/bet.wav');
+            playerBetBtn.addEventListener('click', audio.play());
             }
         }
     );
@@ -592,6 +632,7 @@ creditBalance.innerHTML = `${credits}`;
 
 // cancel bet
 function cancelBet(){
+    let audio = new Audio('sounds/cancel.wav');
     cancelPlayerBet.addEventListener('click', function(e){
         e.preventDefault();
         let amount = playerBet.value * 1;
@@ -599,7 +640,8 @@ function cancelBet(){
         playerBet.value = 0;
         document.getElementById('cancel-player-bet').disabled = true;
         playerBetBtn.disabled = false;
-        announce.innerHTML = `You cancel your bet. Please place your bets`
+        announce.innerHTML = `You cancel your bet. Please place your bets`;
+        cancelPlayerBet.addEventListener('click', audio.play());
     });
     cancelBankerBet.addEventListener('click', function(e){
         e.preventDefault();
@@ -609,7 +651,8 @@ function cancelBet(){
         document.getElementById('cancel-banker-bet').disabled = true;
         bankerBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
-        announce.innerHTML = `You cancel your bet. Please place your bets`
+        announce.innerHTML = `You cancel your bet. Please place your bets`;
+        cancelBankerBet.addEventListener('click', audio.play());
     });
     cancelTieBet.addEventListener('click', function(e){
         e.preventDefault();
@@ -619,7 +662,8 @@ function cancelBet(){
         document.getElementById('cancel-tie-bet').disabled = true;
         tieBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
-        announce.innerHTML = `You cancel your bet. Please place your bets`
+        announce.innerHTML = `You cancel your bet. Please place your bets`;
+        cancelTieBet.addEventListener('click', audio.play());
     });
     cancelSuperBet.addEventListener('click', function(e){
         e.preventDefault();
@@ -629,7 +673,8 @@ function cancelBet(){
         document.getElementById('cancel-super-bet').disabled = true;
         superBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
-        announce.innerHTML = `You cancel your bet. Please place your bets`
+        announce.innerHTML = `You cancel your bet. Please place your bets`;
+        cancelSuperBet.addEventListener('click', audio.play());
     });
 }    
 cancelBet();
