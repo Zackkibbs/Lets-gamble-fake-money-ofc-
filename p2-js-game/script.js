@@ -51,6 +51,22 @@ let tieBet = document.getElementById('tie-bet');
 let superBet = document.getElementById('super-bet');
 let announce = document.getElementById('announce');
 
+playerBet.addEventListener('click', function(e){
+    e.preventDefault();
+    playButton.disabled = true;
+});
+bankerBet.addEventListener('click', function(e){
+    e.preventDefault();
+    playButton.disabled = true;
+});
+tieBet.addEventListener('click', function(e){
+    e.preventDefault();
+    playButton.disabled = true;
+});
+superBet.addEventListener('click', function(e){
+    e.preventDefault();
+    playButton.disabled = true;
+});
 playButton.addEventListener('click', function (e){
     e.preventDefault();
     if(playerBet.value == 0 && bankerBet.value == 0 && tieBet.value == 0 && superBet.value == 0){
@@ -180,7 +196,7 @@ function declareWinner(){
         console.log('Player Wins'); 
     }else if(bankerSum > playerSum){
         if(bankerSum == 6){
-            result.innerHTML = `Bank Wins on Six`;
+            result.innerHTML = `Bank Wins Super Six`;
             scores.innerHTML = `Banker wins Super ${bankerSum} to ${playerSum}`;
             setTimeout(function(){
                 openPopup();
@@ -378,6 +394,7 @@ function closePopup(){
 const landing = document.getElementById('landing-section');
 let back = document.getElementById('back-button');
 let header = document.getElementById('header');
+let super6 = document.getElementById('super6');
 let gameContainer = document.getElementById('game-container');
 let bettingContainer = document.getElementById('betting-container');
 let playContainer = document.getElementById('play-container');
@@ -398,6 +415,7 @@ function showGame(){
     playerSecondCardImg.style.visibility = 'visible';
     bankerFirstCardImg.style.visibility = 'visible';
     bankerSecondCardImg.style.visibility = 'visible';
+    super6.classList.remove('hidden');
     playContainer.classList.remove('hidden');
     document.getElementById('cancel-player-bet').disabled = true;
     document.getElementById('cancel-banker-bet').disabled = true;
@@ -419,6 +437,7 @@ function hideGame(){
     bettingContainer.classList.add('hidden');
     rulesContainer.classList.add('hidden');
     playContainer.classList.add('hidden');
+    super6.classList.add('hidden');
     footer.classList.add('hidden');
 }
 backButton.addEventListener('click', function(e){
@@ -434,10 +453,10 @@ function rulesOfTheGame(){
     rulesContainer.classList.remove('hidden');
     rules.classList.remove('hidden');
     back.classList.remove('hidden');
+    super6.classList.add('hidden');
 }
 rules.addEventListener('click', function(){
     rulesOfTheGame();
-    back.style.marginTop = "2rem"
 });
 
 // betting button

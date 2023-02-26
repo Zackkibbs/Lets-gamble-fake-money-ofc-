@@ -9,9 +9,9 @@ html{
 }
 header{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    margin: 4rem 4rem 4rem 24rem;
+    margin: 3rem;
     color: #ffffff;
 }
 #game-container{
@@ -27,7 +27,13 @@ header{
 #player{
     color: red;
 }
-#banker, header h2{
+#super6{
+    color: yellow;
+    position: absolute;
+    top: 7%;
+    right: 10%;
+}
+#banker{
     color: yellow;
 }
 #player, #banker{
@@ -44,7 +50,7 @@ header{
     margin: 10px;
 }
 #back-button{
-    position: absolute;
+    margin-top: 2rem;
     margin-left: 1rem;
 }
 #play-button, #back-button{
@@ -81,9 +87,9 @@ form button:hover{
     margin-top: 2rem;
 }
 #credits, #announce{
-    color: #ffffff;
+    color:#FFE9A0;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 #play-container{
     display: flex;  
@@ -92,7 +98,7 @@ form button:hover{
     justify-content: center; 
 }
 #play-button{
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 .rotate {
     transform: rotate(90deg);
@@ -109,7 +115,7 @@ form button {
     background: #00425A;
     color:#FFE9A0;
     padding: 4px 10px;
-  }
+}
 .hidden{
     visibility: hidden;
     display: none;
@@ -137,12 +143,17 @@ form button {
     font-size: 2.5rem;
     font-weight: 500;
     margin:  2rem 0 1rem;
+    color: #CC3636;
+}
+.pop-up p{
+    color: #00425A;;
 }
 #pop-up button{
     width: 100%;
     margin-top: 3rem;
     padding: 0.625rem 0;
-    background: #6fd649;
+    background-color: #2EB086;
+    color: #EEE6CE;
     border: 0;
     outline: none;
     font-size: 1.125rem;
@@ -204,10 +215,81 @@ table{
     margin-top: 2rem;
 }
 #announce {
-    height: 4rem;
+    height: 3rem;
 }
 footer{
     font-size: x-small;
-    color: #FFE9A0;
+    color:#f3a42c;
     text-align: center;
+}
+/* media queries */
+
+/* Medium devices */
+@media only screen and (max-width: 768px){
+    #back-button, #play-button{
+        font-size: 1rem;
+        width: 9em;
+        height: 4.5ex;
+        padding: 4px;
+    }
+    #super6{
+        top: 4%;
+        font-size: larger;
+    }
+    #baccarat, #game-container h2{
+        font-size: 1.5rem;
+    }
+    #announce, #credits{
+        font-size: 0.8rem;
+        height: 2rem;
+        margin-top: 1rem;
+    }
+    #player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{
+        height: 150px;
+        width: 100px;
+        margin: 8px;
+    }
+    #game-container .starting-cards, #game-container .hit-card{
+        width: 42%;
+        height: 10rem;
+    }
+    form {
+        padding:0.5px;  
+    }
+    input{
+        flex-grow:1;
+    }
+    form button {
+        padding: 2px 5px;
+    }
+    #play-button{
+        margin-top: 2rem;
+    }
+    footer{
+        font-size: xx-small;
+    }    
+    #landing-section button{
+        width: 40%;
+        font-size: 1.5rem;
+        padding: 8px;
+        margin: 2rem;
+    }
+    #rules-container{
+        font-size: 1rem;
+        margin: 1rem;
+    }
+    .pop-up{
+        width: 20rem;
+        padding: 0 1rem 1rem;
+    }
+    .pop-up h2{
+        font-size: 2rem;
+        margin:  1.5rem 0 0.8rem;
+        color: #CC3636;
+    }
+    #pop-up button{
+        margin-top: 2rem;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+    }
 }
