@@ -45,11 +45,11 @@ const playerBetBtn = document.getElementById('player-betting-btn');
 const bankerBetBtn = document.getElementById('banker-betting-btn');
 const tieBetBtn = document.getElementById('tie-betting-btn');
 const superBetBtn = document.getElementById('super-betting-btn');
-let playerBet = document.getElementById('player-bet');
-let bankerBet = document.getElementById('banker-bet');
-let tieBet = document.getElementById('tie-bet');
-let superBet = document.getElementById('super-bet');
-let announce = document.getElementById('announce');
+const playerBet = document.getElementById('player-bet');
+const bankerBet = document.getElementById('banker-bet');
+const tieBet = document.getElementById('tie-bet');
+const superBet = document.getElementById('super-bet');
+const announce = document.getElementById('announce');
 
 playerBet.addEventListener('click', function(e){
     e.preventDefault();
@@ -98,10 +98,10 @@ function resetField(){
     
     closePopup();
 }
-let playerFirstCardImg = document.createElement('img');
-let playerSecondCardImg = document.createElement('img');
-let bankerFirstCardImg = document.createElement('img');
-let bankerSecondCardImg = document.createElement('img');
+const playerFirstCardImg = document.createElement('img');
+const playerSecondCardImg = document.createElement('img');
+const bankerFirstCardImg = document.createElement('img');
+const bankerSecondCardImg = document.createElement('img');
 
 function startGame(){
     resetField();
@@ -124,8 +124,8 @@ function startGame(){
     playerSum += getValue(playerFirstCard) + getValue(playerSecondCard);  
     playerFirstCardImg.src = 'images/' + playerFirstCard + '.png';
     playerSecondCardImg.src = 'images/' + playerSecondCard + '.png';
-    document.getElementById('player-cards').appendChild(playerFirstCardImg);
-    document.getElementById('player-cards').appendChild(playerSecondCardImg);
+    playerCardsContainer.appendChild(playerFirstCardImg);
+    playerCardsContainer.appendChild(playerSecondCardImg);
     if(playerSum > 9){
         let score = playerSum.toString().split('');
         let playerScore = score.map(Number);
@@ -136,8 +136,8 @@ function startGame(){
     bankerSum += getValue(bankerFirstCard) + getValue(bankerSecondCard);
     bankerFirstCardImg.src = 'images/' + bankerFirstCard + '.png';
     bankerSecondCardImg.src = 'images/' + bankerSecondCard + '.png';
-    document.getElementById('banker-cards').appendChild(bankerFirstCardImg);
-    document.getElementById('banker-cards').appendChild(bankerSecondCardImg);
+    bankerCardsContainer.appendChild(bankerFirstCardImg);
+    bankerCardsContainer.appendChild(bankerSecondCardImg);
     if(bankerSum > 9){
         let score = bankerSum.toString().split('');
         let bankerScore = score.map(Number);
@@ -154,7 +154,7 @@ function playerHittingCard(){
     playerSum += getValue(playerThirdCard);
     let playerThirdCardImg = document.createElement('img');
     playerThirdCardImg.src = 'images/' + playerThirdCard + '.png';
-    document.getElementById('player-hit-card').appendChild(playerThirdCardImg);
+    playerHitCard.appendChild(playerThirdCardImg);
     if(playerSum > 9){
         let score = playerSum.toString().split('');
         let playerScore = score.map(Number);
@@ -168,7 +168,7 @@ function bankerHittingCard(){
     bankerSum += getValue(bankerThirdCard);
     let bankerThirdCardImg = document.createElement('img');
     bankerThirdCardImg.src = 'images/' + bankerThirdCard + '.png';
-    document.getElementById('banker-hit-card').appendChild(bankerThirdCardImg);
+    bankerHitCard.appendChild(bankerThirdCardImg);
     if(bankerSum > 9){
         let score = bankerSum.toString().split('');
         let bankerScore = score.map(Number);
@@ -180,7 +180,7 @@ function bankerHittingCard(){
 function declareWinner(){
     let result = document.getElementById('winner')
     let scores = document.getElementById('scores')
-    document.getElementById("play-button").disabled = true;
+    playButton.disabled = true;
     if (playerSum > bankerSum){
         result.innerHTML = `Player Wins`;
         scores.innerHTML = `Player wins ${playerSum} to ${bankerSum}`;       
@@ -215,9 +215,6 @@ function declareWinner(){
             let amount = bankerBet.value * 1;
             let half = amount / 2;
             let superAmount = superBet.value * 13;
-            console.log(half);
-            console.log(amount);
-            console.log(superAmount);
             setTimeout(function(){
                 creditBalance.innerHTML = credits += (amount + half + superAmount);
                 announce.innerHTML = `You won ${(half + superAmount) - superBet.value}`;
@@ -282,27 +279,6 @@ function declareWinner(){
         console.log('It\'s a tie');
     }
 }
-// declareWinner();
-
-// Hitting Rules (6th)
-// Player and Banker will stay (Declare winner)
-// 6-7-8-9
-// Player & Bank will hit if score is
-// 0-1-2
-// Player will hit a card if score is
-// 3-4-5
-// Bank will hit if score is 3-4-5 
-// if player score is 6-7
-// if player score is 1-2-3-4-5
-// - and bankers sum is 3
-// it will not hit if the hit card of player is 8.
-// - and bankers sum is 4
-// it will hit a card if player hit card is 2-3-4-5-6-7
-// -and bankers sum is 5
-// it wil hit a card if player hit card is 4-5-6-7
-// - and bankers sum is 6
-// it will hit a card if player hit card is 6-7
-
 // switch case
 function canHit(){
     switch (true){
@@ -418,13 +394,13 @@ function closePopup(){
 }
 // game start button
 const landing = document.getElementById('landing-section');
-let back = document.getElementById('back-button');
-let header = document.getElementById('header');
-let super6 = document.getElementById('super6');
-let gameContainer = document.getElementById('game-container');
-let bettingContainer = document.getElementById('betting-container');
-let playContainer = document.getElementById('play-container');
-let footer = document.querySelector('footer');
+const back = document.getElementById('back-button');
+const header = document.getElementById('header');
+const super6 = document.getElementById('super6');
+const gameContainer = document.getElementById('game-container');
+const bettingContainer = document.getElementById('betting-container');
+const playContainer = document.getElementById('play-container');
+const footer = document.querySelector('footer');
 const startGameButton = document.getElementById('start-game');
     startGameButton.addEventListener('click', function(){
         showGame();
@@ -443,9 +419,10 @@ function showGame(){
     bankerSecondCardImg.style.visibility = 'visible';
     super6.classList.remove('hidden');
     playContainer.classList.remove('hidden');
-    document.getElementById('cancel-player-bet').disabled = true;
-    document.getElementById('cancel-banker-bet').disabled = true;
-    document.getElementById('cancel-tie-bet').disabled = true;
+    cancelPlayerBet.disabled = true;
+    cancelBankerBet.disabled = true;
+    cancelTieBet.disabled = true;
+    cancelSuperBet.disabled = true;
     footer.classList.remove('hidden');
     let audio = new Audio('sounds/startgame.wav');
     startGameButton.addEventListener('click', audio.play());
@@ -516,14 +493,15 @@ function betting(){
                 playButton.disabled = true;
                 credits -= playerBet.value;
                 playerBetBtn.disabled = true;
-                document.getElementById("cancel-player-bet").disabled = false;
+                playerBet.disabled = true;
+                cancelPlayerBet.disabled = false;
         }else{
             announce.innerHTML = `You bet ${playerBet.value} on Player`;
             credits -= playerBet.value;
             creditBalance.innerHTML = `${credits}`;
             playerBetBtn.disabled = true;
-            document.getElementById("cancel-player-bet").disabled = false;
-            document.getElementById("play-button").disabled = false;
+            cancelPlayerBet.disabled = false;
+            playButton.disabled = false;
             let audio = new Audio('sounds/bet.wav');
             playerBetBtn.addEventListener('click', audio.play());
             }
@@ -551,16 +529,17 @@ function betting(){
             playButton.disabled = true;
             credits -= bankerBet.value;
             bankerBetBtn.disabled = true;
-            document.getElementById("cancel-banker-bet").disabled = false;
+            bankerBet.disabled = true;
+            cancelBankerBet.disabled = false;
         }else{
             announce.innerHTML = `You bet ${bankerBet.value} on Banker`;
             credits -= bankerBet.value;
             creditBalance.innerHTML = `${credits}`
             bankerBetBtn.disabled = true;
-            document.getElementById('cancel-banker-bet').disabled = false;
-            document.getElementById("play-button").disabled = false;   
+            cancelBankerBet.disabled = false;
+            playButton.disabled = false;   
             let audio = new Audio('sounds/bet.wav');
-            playerBetBtn.addEventListener('click', audio.play());
+            bankerBetBtn.addEventListener('click', audio.play());
             }
         }
     );
@@ -582,16 +561,17 @@ function betting(){
             playButton.disabled = true;
             credits -= tieBet.value;
             tieBetBtn.disabled = true;
-            document.getElementById("cancel-tie-bet").disabled = false;
+            tieBet.disabled = true;
+            cancelTieBet.disabled = false;
         }else{
             announce.innerHTML = `You bet ${tieBet.value} on Tie`;
             credits -= tieBet.value;
             creditBalance.innerHTML = `${credits}`;
             tieBetBtn.disabled = true;
-            document.getElementById('cancel-tie-bet').disabled = false;
-            document.getElementById("play-button").disabled = false;
+            cancelTieBet.disabled = false;
+            playButton.disabled = false;
             let audio = new Audio('sounds/bet.wav');
-            playerBetBtn.addEventListener('click', audio.play());
+            tieBetBtn.addEventListener('click', audio.play());
             }
     });
     superBetBtn.addEventListener('click', function(e){
@@ -612,16 +592,17 @@ function betting(){
             playButton.disabled = true;
             credits -= superBet.value;
             superBetBtn.disabled = true;
-            document.getElementById("cancel-super-bet").disabled = false;
+            superBet.disabled = true;
+            cancelSuperBet.disabled = false;
         }else{
             announce.innerHTML = `You bet ${superBet.value} on Super Six`;
             credits -= superBet.value;
             creditBalance.innerHTML = `${credits}`
             superBetBtn.disabled = true;
-            document.getElementById('cancel-super-bet').disabled = false;
-            document.getElementById("play-button").disabled = false;   
+            cancelSuperBet.disabled = false;
+            playButton.disabled = false;   
             let audio = new Audio('sounds/bet.wav');
-            playerBetBtn.addEventListener('click', audio.play());
+            superBetBtn.addEventListener('click', audio.play());
             }
         }
     );
@@ -638,6 +619,7 @@ function cancelBet(){
         let amount = playerBet.value * 1;
         creditBalance.innerHTML = credits += amount;
         playerBet.value = 0;
+        playerBet.disabled = false;
         document.getElementById('cancel-player-bet').disabled = true;
         playerBetBtn.disabled = false;
         announce.innerHTML = `You cancel your bet. Please place your bets`;
@@ -648,6 +630,7 @@ function cancelBet(){
         let amount = bankerBet.value * 1;
         creditBalance.innerHTML = credits += amount;
         bankerBet.value = 0;
+        bankerBet.disabled = false;
         document.getElementById('cancel-banker-bet').disabled = true;
         bankerBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
@@ -659,6 +642,7 @@ function cancelBet(){
         let amount = tieBet.value * 1;
         creditBalance.innerHTML = credits += amount;
         tieBet.value = 0;
+        tieBet.disabled = false;
         document.getElementById('cancel-tie-bet').disabled = true;
         tieBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
@@ -670,6 +654,7 @@ function cancelBet(){
         let amount = superBet.value * 1;
         creditBalance.innerHTML = credits += amount;
         superBet.value = 0;
+        superBet.disabled = false;
         document.getElementById('cancel-super-bet').disabled = true;
         superBetBtn.disabled = false;
         document.getElementById("play-button").disabled = true;
