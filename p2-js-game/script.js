@@ -1,5 +1,5 @@
-const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "TEN", "J", "Q", "K"];
-const types = ["C", "D", "H", "S"];
+const cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "TEN", "J", "Q", "K"];
+const cardTypes = ["C", "D", "H", "S"];
 const playerCardsContainer = document.getElementById('player-cards');
 const bankerCardsContainer = document.getElementById('banker-cards');
 const playerHitCard = document.getElementById('player-hit-card');
@@ -14,16 +14,16 @@ const cancelTieBet = document.getElementById('cancel-tie-bet');
 const cancelSuperBet = document.getElementById('cancel-super-bet');
 // building deck (8 decks) (first)
 let deck = [];
-function buildDeck() {
+function createDeck() {
     for(let x = 0; x <= 8; x++){
-        for (let i = 0; i < types.length; i++) {
-            for (let j = 0; j < values.length; j++) {
-                deck.push(values[j] + "-" + types[i]); //A-C -> K-C, A-D -> K-D
+        for (let i = 0; i < cardTypes.length; i++) {
+            for (let j = 0; j < cardValues.length; j++) {
+                deck.push(cardValues[j] + "-" + cardTypes[i]); //A-C -> K-C, A-D -> K-D
             }
         }
     }
 }
-buildDeck();
+createDeck();
 
 // shuffling deck (second)
 function shuffleDeck() {
@@ -35,7 +35,7 @@ function shuffleDeck() {
     }
     // console.log(deck);
 }
-shuffleDeck()
+shuffleDeck();
 
 // start game (third)
 let playerSum = 0;
@@ -96,7 +96,7 @@ function resetField(){
         playButton.addEventListener('click', audio2.play());
     }, 300);
     
-    closePopup();
+    hideWinnerPopup();
 }
 const playerFirstCardImg = document.createElement('img');
 const playerSecondCardImg = document.createElement('img');
@@ -185,7 +185,7 @@ function declareWinner(){
         result.innerHTML = `Player Wins`;
         scores.innerHTML = `Player wins ${playerSum} to ${bankerSum}`;       
         setTimeout(function(){
-            openPopup();
+            showWinnerPopup();
         }, 1000);
         let amount = playerBet.value * 2;
         setTimeout(function(){
@@ -210,7 +210,7 @@ function declareWinner(){
             result.innerHTML = `Bank Wins Super Six`;
             scores.innerHTML = `Banker wins Super ${bankerSum} to ${playerSum}`;
             setTimeout(function(){
-                openPopup();
+                showWinnerPopup();
             }, 1000);
             let amount = bankerBet.value * 1;
             let half = amount / 2;
@@ -227,7 +227,7 @@ function declareWinner(){
             result.innerHTML = `Bank Wins`;
             scores.innerHTML = `Banker wins ${bankerSum} to ${playerSum}`;
             setTimeout(function(){
-                openPopup();
+                showWinnerPopup();
             }, 1000);
             let amount = bankerBet.value * 2;
             setTimeout(function(){
@@ -253,7 +253,7 @@ function declareWinner(){
         scores.innerHTML = `Player and Banker is ${playerSum}`
         result.innerHTML = `Draw`
         setTimeout(function(){
-            openPopup();
+            showWinnerPopup();
         }, 1000);
         let playerAmount = playerBet.value * 1;
         creditBalance.innerHTML = credits += playerAmount;
@@ -357,12 +357,12 @@ function getValue(card){
     return parseInt(value);
 }
 // popup winner
-let openPopUp = document.getElementById('pop-up')
-let closePopUp = document.getElementById('pop-up-btn')
-function openPopup(){
+const openPopUp = document.getElementById('pop-up')
+const closePopUp = document.getElementById('pop-up-btn')
+function showWinnerPopup(){
     openPopUp.classList.add('open-popup');
 }
-function closePopup(){
+function hideWinnerPopup(){
     closePopUp.addEventListener('click', function(){
         openPopUp.classList.remove('open-popup');
         backButton.disabled = false;
