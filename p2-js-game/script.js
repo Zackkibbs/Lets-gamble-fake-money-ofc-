@@ -33,7 +33,6 @@ function shuffleDeck() {
         deck[i] = deck[j];
         deck[j] = temp;
     }
-    // console.log(deck);
 }
 shuffleDeck();
 
