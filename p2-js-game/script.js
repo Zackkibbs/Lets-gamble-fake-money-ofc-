@@ -12,31 +12,6 @@ const cancelPlayerBet = document.getElementById('cancel-player-bet');
 const cancelBankerBet = document.getElementById('cancel-banker-bet');
 const cancelTieBet = document.getElementById('cancel-tie-bet');
 const cancelSuperBet = document.getElementById('cancel-super-bet');
-// building deck (8 decks) (first)
-let deck = [];
-function createDeck() {
-    for(let x = 0; x <= 8; x++){
-        for (let i = 0; i < cardTypes.length; i++) {
-            for (let j = 0; j < cardValues.length; j++) {
-                deck.push(cardValues[j] + "-" + cardTypes[i]); //A-C -> K-C, A-D -> K-D
-            }
-        }
-    }
-}
-createDeck();
-
-// shuffling deck (second)
-function shuffleDeck() {
-    for (let i = 0; i < deck.length; i++) {
-        let j = Math.floor(Math.random() * deck.length); // (0-1) * 52 => (0-51.9999)
-        let temp = deck[i];
-        deck[i] = deck[j];
-        deck[j] = temp;
-    }
-}
-shuffleDeck();
-
-// start game (third)
 let playerSum = 0;
 let bankerSum = 0;
 const playButton = document.getElementById('play-button');
@@ -49,7 +24,49 @@ const bankerBet = document.getElementById('banker-bet');
 const tieBet = document.getElementById('tie-bet');
 const superBet = document.getElementById('super-bet');
 const announce = document.getElementById('announce');
+const playerFirstCardImg = document.createElement('img');
+const playerSecondCardImg = document.createElement('img');
+const bankerFirstCardImg = document.createElement('img');
+const bankerSecondCardImg = document.createElement('img');
+const openPopUp = document.getElementById('pop-up');
+const closePopUp = document.getElementById('pop-up-btn');
+const landing = document.getElementById('landing-section');
+const back = document.getElementById('back-button');
+const header = document.getElementById('header');
+const super6 = document.getElementById('super6');
+const gameContainer = document.getElementById('game-container');
+const bettingContainer = document.getElementById('betting-container');
+const playContainer = document.getElementById('play-container');
+const footer = document.querySelector('footer');
+const startGameButton = document.getElementById('start-game');
+const rules = document.getElementById('rules');
+const rulesContainer = document.getElementById('rules-container');
 
+// building deck (8 decks) (first)
+let deck = [];
+function createDeck() {
+    for(let x = 0; x <= 8; x++){// iterate 8 times (8 decks)
+        for (let i = 0; i < cardTypes.length; i++) {// iterate card types to card values
+            for (let j = 0; j < cardValues.length; j++) {
+                deck.push(cardValues[j] + "-" + cardTypes[i]); //A-C -> K-C, A-D -> K-D
+            }
+        }
+    }
+}
+createDeck();
+
+// shuffling deck (second)
+function shuffleDeck() { // randomize the 8 decks
+    for (let i = 0; i < deck.length; i++) {
+        let j = Math.floor(Math.random() * deck.length); // (0-1) * 52 => (0-51.9999)
+        let temp = deck[i];
+        deck[i] = deck[j];
+        deck[j] = temp;
+    }
+}
+shuffleDeck();
+
+// start game (third)
 playerBet.addEventListener('click', function(e){
     e.preventDefault();
     playButton.disabled = true;
@@ -77,7 +94,7 @@ playButton.addEventListener('click', function (e){
     }
 });
 
-function resetField(){
+function resetField(){ //reset values back
     playerCardsContainer.innerHTML = '';
     bankerCardsContainer.innerHTML = '';
     playerHitCard.innerHTML = '';
@@ -97,12 +114,8 @@ function resetField(){
     
     hideWinnerPopup();
 }
-const playerFirstCardImg = document.createElement('img');
-const playerSecondCardImg = document.createElement('img');
-const bankerFirstCardImg = document.createElement('img');
-const bankerSecondCardImg = document.createElement('img');
 
-function startGame(){
+function startGame(){ //function when the game is started
     resetField();
     playButton.disabled = true;
     backButton.disabled = true;
@@ -125,7 +138,7 @@ function startGame(){
     playerSecondCardImg.src = 'images/' + playerSecondCard + '.png';
     playerCardsContainer.appendChild(playerFirstCardImg);
     playerCardsContainer.appendChild(playerSecondCardImg);
-    if(playerSum > 9){
+    if(playerSum > 9){ // getting the value of index 1 to represent the number(sum)
         let score = playerSum.toString().split('');
         let playerScore = score.map(Number);
         playerSum = playerScore[1];
@@ -137,7 +150,7 @@ function startGame(){
     bankerSecondCardImg.src = 'images/' + bankerSecondCard + '.png';
     bankerCardsContainer.appendChild(bankerFirstCardImg);
     bankerCardsContainer.appendChild(bankerSecondCardImg);
-    if(bankerSum > 9){
+    if(bankerSum > 9){ // getting the value of index 1 to represent the number(sum)
         let score = bankerSum.toString().split('');
         let bankerScore = score.map(Number);
         bankerSum = bankerScore[1];
@@ -148,13 +161,14 @@ function startGame(){
 }
 
 // hitting card (6th)
+// if the condition in switch case to hit is satisfied, this is the condition for the hitting cards of player and banker
 function playerHittingCard(){
     let playerThirdCard = deck.pop();
     playerSum += getValue(playerThirdCard);
     let playerThirdCardImg = document.createElement('img');
     playerThirdCardImg.src = 'images/' + playerThirdCard + '.png';
     playerHitCard.appendChild(playerThirdCardImg);
-    if(playerSum > 9){
+    if(playerSum > 9){ // getting the value of index 1 to represent the number(sum)
         let score = playerSum.toString().split('');
         let playerScore = score.map(Number);
         playerSum = playerScore[1];
@@ -168,14 +182,14 @@ function bankerHittingCard(){
     let bankerThirdCardImg = document.createElement('img');
     bankerThirdCardImg.src = 'images/' + bankerThirdCard + '.png';
     bankerHitCard.appendChild(bankerThirdCardImg);
-    if(bankerSum > 9){
+    if(bankerSum > 9){ // getting the value of index 1 to represent the number(sum)
         let score = bankerSum.toString().split('');
         let bankerScore = score.map(Number);
         bankerSum = bankerScore[1];
     }
     return getValue(bankerThirdCard);
 }
-// function to declare the winner (5th)
+// function to declare the winner and integration of bets payout (5th)
 function declareWinner(){
     let result = document.getElementById('winner')
     let scores = document.getElementById('scores')
@@ -278,6 +292,26 @@ function declareWinner(){
         console.log('It\'s a tie');
     }
 }
+
+// Hitting Rules (6th)
+// Player and Banker will stay (Declare winner)
+// 6-7-8-9
+// Player & Bank will hit if score is
+// 0-1-2
+// Player will hit a card if score is
+// 3-4-5
+// Bank will hit if score is 3-4-5 
+// if player score is 6-7
+// if player score is 1-2-3-4-5
+// - and bankers sum is 3
+// it will not hit if the hit card of player is 8.
+// - and bankers sum is 4
+// it will hit a card if player hit card is 2-3-4-5-6-7
+// -and bankers sum is 5
+// it wil hit a card if player hit card is 4-5-6-7
+// - and bankers sum is 6
+// it will hit a card if player hit card is 6-7
+
 // switch case
 function canHit(){
     switch (true){
@@ -343,7 +377,7 @@ function canHit(){
         default:
     }
 }
-// to get the value of player and banker (4th)
+// to get the card value of player and banker (4th)
 function getValue(card){
     let data = card.split('-');
     let value = data[0];
@@ -355,9 +389,8 @@ function getValue(card){
     }
     return parseInt(value);
 }
+
 // popup winner
-const openPopUp = document.getElementById('pop-up')
-const closePopUp = document.getElementById('pop-up-btn')
 function showWinnerPopup(){
     openPopUp.classList.add('open-popup');
 }
@@ -391,20 +424,12 @@ function hideWinnerPopup(){
         superBet.disabled = false;
     });
 }
+
 // game start button
-const landing = document.getElementById('landing-section');
-const back = document.getElementById('back-button');
-const header = document.getElementById('header');
-const super6 = document.getElementById('super6');
-const gameContainer = document.getElementById('game-container');
-const bettingContainer = document.getElementById('betting-container');
-const playContainer = document.getElementById('play-container');
-const footer = document.querySelector('footer');
-const startGameButton = document.getElementById('start-game');
     startGameButton.addEventListener('click', function(){
         showGame();
 });
-function showGame(){
+function showGame(){ //function to show the game and hide the landing page
     landing.classList.remove('active');
     landing.classList.add('hidden');
     back.classList.remove('hidden');
@@ -427,7 +452,7 @@ function showGame(){
     startGameButton.addEventListener('click', audio.play());
 }
 //  back button
-function hideGame(){
+function hideGame(){ //function to hide game and back to the landing page
     playerFirstCardImg.style.visibility = 'hidden';
     playerSecondCardImg.style.visibility = 'hidden';
     bankerFirstCardImg.style.visibility = 'hidden';
@@ -450,10 +475,9 @@ backButton.addEventListener('click', function(e){
     let audio = new Audio('sounds/back.wav');
     backButton.addEventListener('click', audio.play());
 });
+
 // rules
-let rules = document.getElementById('rules');
-let rulesContainer = document.getElementById('rules-container');
-function rulesOfTheGame(){
+function rulesOfTheGame(){ //funtion to show the rules of the game
     landing.classList.remove('active');
     landing.classList.add('hidden');
     rulesContainer.classList.remove('hidden');
@@ -468,8 +492,7 @@ rules.addEventListener('click', function(){
 });
 
 // betting button
-
-function betting(){
+function betting(){ //function to enable betting
     playerBetBtn.addEventListener('click', function(e){
         e.preventDefault();
         if(credits <= 0){
@@ -607,11 +630,12 @@ function betting(){
     );
 }
 betting();
+
 //  credit balance 
 creditBalance.innerHTML = `${credits}`;
 
 // cancel bet
-function cancelBet(){
+function cancelBet(){ //function to enable cancel button
     let audio = new Audio('sounds/cancel.wav');
     cancelPlayerBet.addEventListener('click', function(e){
         e.preventDefault();
@@ -619,8 +643,9 @@ function cancelBet(){
         creditBalance.innerHTML = credits += amount;
         playerBet.value = 0;
         playerBet.disabled = false;
-        document.getElementById('cancel-player-bet').disabled = true;
+        cancelPlayerBet.disabled = true;
         playerBetBtn.disabled = false;
+        playButton.disabled = true;
         announce.innerHTML = `You cancel your bet. Please place your bets`;
         cancelPlayerBet.addEventListener('click', audio.play());
     });
@@ -630,9 +655,9 @@ function cancelBet(){
         creditBalance.innerHTML = credits += amount;
         bankerBet.value = 0;
         bankerBet.disabled = false;
-        document.getElementById('cancel-banker-bet').disabled = true;
+        cancelBankerBet.disabled = true;
         bankerBetBtn.disabled = false;
-        document.getElementById("play-button").disabled = true;
+        playButton.disabled = true;
         announce.innerHTML = `You cancel your bet. Please place your bets`;
         cancelBankerBet.addEventListener('click', audio.play());
     });
@@ -642,9 +667,9 @@ function cancelBet(){
         creditBalance.innerHTML = credits += amount;
         tieBet.value = 0;
         tieBet.disabled = false;
-        document.getElementById('cancel-tie-bet').disabled = true;
+        cancelTieBet.disabled = true;
         tieBetBtn.disabled = false;
-        document.getElementById("play-button").disabled = true;
+        playButton.disabled = true;
         announce.innerHTML = `You cancel your bet. Please place your bets`;
         cancelTieBet.addEventListener('click', audio.play());
     });
@@ -654,9 +679,9 @@ function cancelBet(){
         creditBalance.innerHTML = credits += amount;
         superBet.value = 0;
         superBet.disabled = false;
-        document.getElementById('cancel-super-bet').disabled = true;
+        cancelSuperBet.disabled = true;
         superBetBtn.disabled = false;
-        document.getElementById("play-button").disabled = true;
+        playButton.disabled = true;
         announce.innerHTML = `You cancel your bet. Please place your bets`;
         cancelSuperBet.addEventListener('click', audio.play());
     });
