@@ -1,4 +1,4 @@
-# Baccarat Game
+# Baccarat JavaScript Game
 
 This repository contains a Baccarat game implemented using HTML, CSS, and JavaScript. Baccarat is a popular card game played in casinos, and this game allows users to play a virtual version of it right in their web browser.
 
