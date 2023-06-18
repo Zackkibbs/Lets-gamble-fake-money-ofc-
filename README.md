@@ -46,3 +46,7 @@ The game was developed by Russell Ramiro as a project to showcase programming sk
 ## License
 
 This project is licensed under the MIT License. Feel free to modify and distribute it as per the terms of the license. 
+
+## Live Site
+
+https://baccarat-javascript-game.netlify.app/
