@@ -1,1 +1,325 @@
-{ padding: 0; margin: 0; box-sizing: border-box; font-family: 'Hind Madurai', sans-serif; } html{ background-color: rgb(4, 87, 4); } header{ display: flex; justify-content: center; align-items: center; margin: 3rem; color: #ffffff; } #game-container{ display: flex; justify-content: center; flex-direction: row; flex-wrap: wrap; } #game-container .starting-cards, #game-container .hit-card{ width: 49%; height: 12.5rem; } #player{ color: red; } #super6{ color: yellow; position: absolute; top: 7%; right: 10%; } #banker{ color: yellow; } #player, #banker{ display: flex; justify-content: center; } #player-cards, #banker-cards, #player-hit-card, #banker-hit-card{ display: flex; justify-content: center; } #player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{ height: 175px; width: 125px; margin: 10px; } #back-button{ margin-top: 2rem; margin-left: 1rem; } #play-button, #back-button{ font-size: 1.25rem; box-shadow: 0 0.9rem 2.8rem rgba(241, 59, 68, 0.493); width: 10em; height: 5ex; font-weight: bold; color: #FFE9A0; cursor: pointer; padding: 10px; border: 2px solid yellow; background-color: transparent; border-radius: 50px; cursor: pointer; } #play-button:hover, #back-button:hover { color: #CC3636; text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493); border: 2px solid #f3a42c; } form button:hover{ color: #CC3636; text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493); border: 1px solid #f3a42c; } #play-button:active, #back-button:active, form button:active { box-shadow: 2px 2px 5px #fc894d; } #betting-container{ display: flex; justify-content: space-evenly; align-items: center; margin: 2rem 0 0 1rem; } #credits, #announce{ color:#FFE9A0; text-align: center; margin-top: 1.5rem; } #play-container{ display: flex; flex-direction: column; align-items: center; justify-content: center; } #play-button{ margin-top: 2rem; } .rotate { transform: rotate(90deg); } form { padding:1px; } input{ flex-grow:2; border:none; } form button { border:1px solid #FFE9A0; background: #00425A; color:#FFE9A0; padding: 4px 10px; } .hidden{ visibility: hidden; display: none; } .pop-up{ width: 25rem; background-color: #ffffff; border-radius: 1rem; position: absolute; top: 0%; left: 50%; transform: translate(-50%,-50%); text-align: center; padding: 0 2rem 2rem; visibility: hidden; transition: transform 0.7s, 0.7s; } .open-popup{ visibility: visible; top: 50%; transform: translate(-50%,-50%) scale(1); } .pop-up h2{ font-size: 2.5rem; font-weight: 500; margin: 2rem 0 1rem; color: #CC3636; } .pop-up p{ color: #00425A;; } #pop-up button{ width: 100%; margin-top: 3rem; padding: 0.625rem 0; background-color: #2EB086; color: #EEE6CE; border: 0; outline: none; font-size: 1.125rem; border-radius: 0.25rem; cursor: pointer; box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2); } #landing-section{ position: absolute; width: 100%; top: 50%; left: 50%; transform: translate(-50%,-50%); display: flex; flex-direction: column; height: 100vh; justify-content: center; align-items: center; } #landing-section button{ width: 40%; color: #FFE9A0; font-size: 2rem; font-weight: bold; padding: 10px; border: 2px solid yellow; background-color: transparent; border-radius: 50px; cursor: pointer; box-shadow: 0 0.9rem 2.8rem rgba(241, 59, 68, 0.493); margin: 3rem; } #landing-section button:hover{ color: #CC3636; text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493); border: 2px solid #f3a42c; } #rules-container{ color: #FFE9A0; font-size: 1.5rem; margin: 2rem; font-weight: bold; text-align: center; position: absolute; width: 80%; top: 50%; left: 50%; transform: translate(-50%,-50%); } .active{ visibility: visible; } table{ border: 2px solid yellow; text-align: center; display: flex; justify-content: center; align-items: center; margin-top: 2rem; } #announce { height: 2rem; } footer{ font-size: x-small; color:#f3a42c; text-align: center; margin-top: 0.5rem; } /* media queries */ /* Medium devices */ @media only screen and (max-width: 768px){ #back-button, #play-button{ font-size: 1rem; width: 9em; height: 4.5ex; padding: 4px; } #super6{ top: 4%; font-size: larger; } #baccarat, #game-container h2{ font-size: 1.5rem; } #announce, #credits{ font-size: 0.9rem; height: 2rem; margin-top: 1rem; } #player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{ height: 150px; width: 100px; margin: 8px; } #game-container .starting-cards, #game-container .hit-card{ width: 42%; height: 10rem; } form { padding:0.5px; } input{ flex-grow:1; } form button { padding: 2px 5px; } #play-button{ margin-top: 2rem; } footer{ font-size: xx-small; } #landing-section button{ font-size: 1.5rem; padding: 8px; margin: 2rem; } #rules-container{ font-size: 1.2rem; margin: 1rem; } .pop-up{ width: 20rem; padding: 0 1rem 1rem; } .pop-up h2{ font-size: 2rem; margin: 1.5rem 0 0.8rem; color: #CC3636; } #pop-up button{ margin-top: 2rem; padding: 0.5rem 0; font-size: 1rem; } } /* Small devices */ @media only screen and (max-width: 635px){ #betting-container{ display: flex; flex-direction: column; justify-content: center; align-items: center; } } @media only screen and (max-width: 518px){ #back-button, #play-button{ font-size: 0.8rem; width: 8.5em; height: 4ex; padding: 2px; } #super6{ top: 4%; font-size: medium; } #baccarat, #game-container h2{ font-size: 1rem; } #announce, #credits{ height: 1.5rem; margin-top: 0.7rem; } #game-container .starting-cards, #game-container .hit-card{ height: 8.5rem; } #player-cards img, #banker-cards img, #player-hit-card img, #banker-hit-card img{ height: 110px; width: 70px; margin: 6px; } #landing-section button{ width: 50%; font-size: 1rem; padding: 6px; margin: 1rem; } #rules-container{ font-size: 1.1rem; margin: 1rem; } .pop-up{ width: 15rem; padding: 0 0.7rem 0.7rem; } .pop-up h2{ font-size: 1.5rem; margin: 1rem 0 0.6rem; color: #CC3636; } #pop-up button{ margin-top: 1rem; padding: 0.3rem 0; font-size: 0.8rem; } .pop-up p{ font-size: 0.8rem; } #rules-container{ font-size: 0.7rem; margin: 0.9rem; } }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Madurai', sans-serif;
+}
+html {
+  background-color: rgb(4, 87, 4);
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  color: #ffffff;
+}
+#game-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#game-container .starting-cards,
+#game-container .hit-card {
+  width: 49%;
+  height: 12.5rem;
+}
+#player {
+  color: red;
+}
+#super6 {
+  color: yellow;
+  position: absolute;
+  top: 7%;
+  right: 10%;
+}
+#banker {
+  color: yellow;
+}
+#player,
+#banker {
+  display: flex;
+  justify-content: center;
+}
+#player-cards,
+#banker-cards,
+#player-hit-card,
+#banker-hit-card {
+  display: flex;
+  justify-content: center;
+}
+#player-cards img,
+#banker-cards img,
+#player-hit-card img,
+#banker-hit-card img {
+  height: 175px;
+  width: 125px;
+  margin: 10px;
+}
+#back-button {
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+#play-button,
+#back-button {
+  font-size: 1.25rem;
+  box-shadow: 0 0.9rem 2.8rem rgba(241, 59, 68, 0.493);
+  width: 10em;
+  height: 5ex;
+  font-weight: bold;
+  color: #FFE9A0;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid yellow;
+  background-color: transparent;
+  border-radius: 50px;
+}
+#play-button:hover,
+#back-button:hover {
+  color: #CC3636;
+  text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493);
+  border: 2px solid #f3a42c;
+}
+form button:hover {
+  color: #CC3636;
+  text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493);
+  border: 1px solid #f3a42c;
+}
+#play-button:active,
+#back-button:active,
+form button:active {
+  box-shadow: 2px 2px 5px #fc894d;
+}
+#betting-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 2rem 0 0 1rem;
+}
+#credits,
+#announce {
+  color: #FFE9A0;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+#play-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#play-button {
+  margin-top: 2rem;
+}
+.rotate {
+  transform: rotate(90deg);
+}
+form {
+  padding: 1px;
+}
+input {
+  flex-grow: 2;
+  border: none;
+}
+form button {
+  border: 1px solid #FFE9A0;
+  background: #00425A;
+  color: #FFE9A0;
+  padding: 4px 10px;
+}
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+.pop-up {
+  width: 25rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0 2rem 2rem;
+  visibility: hidden;
+  transition: transform 0.7s, 0.7s;
+}
+.open-popup {
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+.pop-up h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 2rem 0 1rem;
+  color: #CC3636;
+}
+.pop-up p {
+  color: #00425A;
+}
+#pop-up button {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 0.625rem 0;
+  background-color: #2EB086;
+  color: #EEE6CE;
+  border: 0;
+  outline: none;
+  font-size: 1.125rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+#landing-section {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+#landing-section button {
+  width: 40%;
+  color: #FFE9A0;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px;
+  border: 2px solid yellow;
+  background-color: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0.9rem 2.8rem rgba(241, 59, 68, 0.493);
+  margin: 3rem;
+}
+#landing-section button:hover {
+  color: #CC3636;
+  text-shadow: 8px 8px 11px rgba(241, 59, 68, 0.493);
+  border: 2px solid #f3a42c;
+}
+#rules-container {
+  color: #FFE9A0;
+  font-size: 1.5rem;
+  margin: 2rem;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.active {
+  visibility: visible;
+}
+table {
+  border: 2px solid yellow;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+#announce {
+  height: 2rem;
+}
+footer {
+  font-size: x-small;
+  color: #f3a42c;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  #back-button,
+  #play-button {
+    font-size: 1rem;
+    width: 9em;
+    height: 4.5ex;
+    padding: 4px;
+  }
+  #super6 {
+    top: 4%;
+    font-size: larger;
+  }
+  #baccarat,
+  #game-container h2 {
+    font-size: 1.5rem;
+  }
+  #announce,
+  #credits {
+    font-size: 0.9rem;
+    height: 2rem;
+    margin-top: 1rem;
+  }
+  #player-cards img,
+  #banker-cards img,
+  #player-hit-card img,
+  #banker-hit-card img {
+    height: 150px;
+    width: 100px;
+    margin: 8px;
+  }
+  #game-container .starting-cards,
+  #game-container .hit-card {
+    width: 42%;
+    height: 10rem;
+  }
+  form {
+    padding: 0.5px;
+  }
+  input {
+    flex-grow: 1;
+  }
+  form button {
+    padding: 2px 5px;
+  }
+  #play-button {
+    margin-top: 2rem;
+  }
+  footer {
+    font-size: xx-small;
+  }
+  #landing-section button {
+    font-size: 1.5rem;
+    padding: 8px;
+    margin: 2rem;
+  }
+  #rules-container {
+    font-size: 1.2rem;
+    margin: 1rem;
+  }
+  .pop-up {
+    width: 20rem;
+    padding: 0 1rem 1rem;
+  }
+  .pop-up h2 {
+    font-size: 2rem;
+    margin: 1.5rem 0 0.8rem;
+    color: #CC3636;
+  }
+  #pop-up button {
+    margin-top: 2rem;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 635px) {
+  #betting-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 518px) {
+  #back-button,
+  #play-button {
+    font-size: 0.8rem;
+    width:
