@@ -1,157 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baccarat Gang</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Lora&family=Montserrat&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <nav id="main-nav">
-    <ul class="nav-menu">
-      <li><a href="#landing-section">Home</a></li>
-      <li><a href="#websites">Websites</a></li>
-      <li><a href="#game-container">Games</a></li>
-      <li><a href="#ai-blog">AI Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Landing Section -->
-  <section id="landing-section" class="active">
-    <div class="hero">
-      <h1>Welcome to Baccarat Gang</h1>
-      <p>Play the classic casino game, bet fake money, and explore strategy—all in one sleek experience.</p>
-      <div class="hero-buttons">
-        <button id="start-game">START GAME</button>
-        <button id="rules">RULES OF THE GAME</button>
-      </div>
+<section id="betting-container" class="active">
+  <div class="bet-zone">
+    <h3>Player Bet</h3>
+    <div class="chip-selector" data-bet-type="player">
+      <div class="chip" data-value="10">$10</div>
+      <div class="chip" data-value="50">$50</div>
+      <div class="chip" data-value="100">$100</div>
     </div>
-  </section>
+    <button id="cancel-player-bet">Cancel</button>
+  </div>
 
-  <!-- Game Section -->
-  <button id="back-button" class="hidden">BACK</button>
-  <header id="header" class="hidden">
-    <h1 id="baccarat">BACCARAT</h1>
-  </header>
-  <h2 id="super6" class="hidden">SUPER SIX</h2>
-  <section id="game-container" class="hidden">
-    <div class="starting-cards">
-      <h2 id="player">PLAYER</h2>
-      <div id="player-cards">
-        <img src="images/BACK.png" alt="back-card-img" class="back" />
-        <img src="images/BACK.png" alt="back-card-img" class="back" />
-      </div>
+  <div class="bet-zone">
+    <h3>Tie Bet</h3>
+    <div class="chip-selector" data-bet-type="tie">
+      <div class="chip" data-value="10">$10</div>
+      <div class="chip" data-value="50">$50</div>
+      <div class="chip" data-value="100">$100</div>
     </div>
-    <div class="starting-cards">
-      <h2 id="banker">BANK</h2>
-      <div id="banker-cards">
-        <img src="images/BACK.png" alt="back-card-img" class="back" />
-        <img src="images/BACK.png" alt="back-card-img" class="back" />
-      </div>
+    <button id="cancel-tie-bet">Cancel</button>
+  </div>
+
+  <div class="bet-zone">
+    <h3>Super Six Bet</h3>
+    <div class="chip-selector" data-bet-type="super">
+      <div class="chip" data-value="10">$10</div>
+      <div class="chip" data-value="50">$50</div>
+      <div class="chip" data-value="100">$100</div>
     </div>
-    <div class="hit-card">
-      <div id="player-hit-card" class="rotate"></div>
+    <button id="cancel-super-bet">Cancel</button>
+  </div>
+
+  <div class="bet-zone">
+    <h3>Banker Bet</h3>
+    <div class="chip-selector" data-bet-type="banker">
+      <div class="chip" data-value="10">$10</div>
+      <div class="chip" data-value="50">$50</div>
+      <div class="chip" data-value="100">$100</div>
     </div>
-    <div class="hit-card">
-      <div id="banker-hit-card" class="rotate"></div>
-    </div>
-  </section>
-
-  <!-- Betting Section -->
-  <section id="betting-container" class="hidden">
-    <form class="betting">
-      <input type="number" id="player-bet" class="input" value="0" />
-      <button id="player-betting-btn">Player</button>
-      <button id="cancel-player-bet">Cancel bet</button>
-    </form>
-    <form>
-      <input type="number" id="tie-bet" class="input" value="0" />
-      <button id="tie-betting-btn">Tie</button>
-      <button id="cancel-tie-bet">Cancel bet</button>
-    </form>
-    <form>
-      <input type="number" id="super-bet" class="input" value="0" />
-      <button id="super-betting-btn">Super Six</button>
-      <button id="cancel-super-bet">Cancel bet</button>
-    </form>
-    <form>
-      <input type="number" id="banker-bet" class="input" value="0" />
-      <button id="banker-betting-btn">Banker</button>
-      <button id="cancel-banker-bet">Cancel bet</button>
-    </form>
-  </section>
-
-  <!-- Play Section -->
-  <section id="play-container" class="hidden">
-    <button id="play-button">PLAY</button>
-    <div id="credits">
-      <h2>Credits: <span id="balance"></span></h2>
-    </div>
-    <div><h2 id="announce"></h2></div>
-  </section>
-
-  <!-- Pop-up -->
-  <section id="pop-up-container">
-    <div id="pop-up" class="pop-up">
-      <h2 id="winner"></h2>
-      <p id="scores"></p>
-      <button id="pop-up-btn" type="button">OK</button>
-    </div>
-  </section>
-
-  <!-- Rules Section -->
-  <section id="rules-container" class="hidden">
-    <p id="game-rules">
-      The object of the game is to get a score of 9 or closest to it. Players may play with the Bank, or against it (as Player), and/or place Tie and Super Six bets at anytime. Ace counts as 1 while picture cards and tens as zero. Cards from 2 to 9 follow their face value. Each hand's final score is evaluated as the sum of the cards' point values less all multiples of ten. The hand that scores closer to 9 wins. Bank bets are paid half on score of 6. Super six bets are paid 12:1 if bank wins on score of 6. Tie bets are paid 8:1. Below is the hitting rules.
-    </p>
-    <table id="table">
-      <caption>Player Hand</caption>
-      <tr><th>Point Value of First Two Cards:</th><th>Draws a card:</th></tr>
-      <tr><td>0-1-2-3-4-5</td><td>Draw a card</td></tr>
-      <tr><td>6-7</td><td>Stand</td></tr>
-      <tr><td>8-9</td><td>Stand</td></tr>
-    </table>
-    <table>
-      <caption>Banker Hand</caption>
-      <tr><th>Point Value of First Two Cards:</th><th>Draws when the player's third card is:</th><th>Does not draw when the player's third card is:</th></tr>
-      <tr><td>0-1-2</td><td>Always draws a card</td><td></td></tr>
-      <tr><td>3</td><td>A-2-3-4-5-6-7-9-10-J-Q-K</td><td>8</td></tr>
-      <tr><td>4</td><td>2-3-4-5-6-7</td><td>A-8-9-10-J-Q-K</td></tr>
-      <tr><td>5</td><td>4-5-6-7</td><td>A-2-3-8-9-10-J-Q-K</td></tr>
-      <tr><td>6</td><td>6-7</td><td>A-2-3-4-5-8-9-10-J-Q-K</td></tr>
-      <tr><td>7</td><td>Always Stands</td><td></td></tr>
-    </table>
-  </section>
-
-  <!-- Extra Sections -->
-  <section id="websites" class="hidden">
-    <h2>Websites</h2>
-    <p>Explore other projects, portfolios, and web experiments built by the Baccarat Gang team.</p>
-  </section>
-
-  <section id="ai-blog" class="hidden">
-    <h2>AI Blog</h2>
-    <p>Read articles and insights on AI, game development, and digital strategy.</p>
-  </section>
-
-  <section id="contact" class="hidden">
-    <h2>Contact</h2>
-    <p>Questions or feedback? Reach out at <a href="mailto:you@example.com">you@example.com</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>For learning purposes only. No money involved in doing this project.</p>
-    <p>Coded by Russell Ramiro ©2023</p>
-  </footer>
-
-</body>
-</html>
+    <button id="cancel-banker-bet">Cancel</button>
+  </div>
+</section>
